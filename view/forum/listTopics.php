@@ -7,5 +7,7 @@
 
 <?php
 foreach($topics as $topic ){ ?>
-    <p><a href="#"><?= $topic ?></a> par <?= $topic->getUser() ?></p>
+<p>
+  <a href="#"><?= $topic ?></a> par <?= $topic->getUser() ?>
+</p>
 <?php }

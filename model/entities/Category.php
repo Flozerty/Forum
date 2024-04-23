@@ -9,52 +9,34 @@ use App\Entity;
 
 final class Category extends Entity{
 
-    private $id;
-    private $name;
+  private $id;
+  private $name;
 
-    // chaque entité aura le même constructeur grâce à la méthode hydrate (issue de App\Entity)
-    public function __construct($data){         
-        $this->hydrate($data);        
-    }
+  // chaque entité aura le même constructeur grâce à la méthode hydrate (issue de App\Entity)
+  public function __construct($data){         
+    $this->hydrate($data);        
+  }
 
-    /**
-     * Get the value of id
-     */ 
-    public function getId()
-    {
-        return $this->id;
-    }
+  /////////// GETTERS & SETTERS ///////////
+  public function getId()
+  {
+    return $this->id;
+  }
+  public function setId($id)
+  {
+    $this->id = $id;
+    return $this;
+  }
+  public function getName(){
+    return $this->name;
+  }
+  public function setName($name){
+    $this->name = $name;
+    return $this;
+  }
+  public function __toString(){
+    return $this->name;
+  }
+  ///////////////////////////////:///////////
 
-    /**
-     * Set the value of id
-     *
-     * @return  self
-     */ 
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of name
-     */ 
-    public function getName(){
-        return $this->name;
-    }
-
-    /**
-     * Set the value of name
-     *
-     * @return  self
-     */ 
-    public function setName($name){
-        $this->name = $name;
-        return $this;
-    }
-
-    public function __toString(){
-        return $this->name;
-    }
 }
