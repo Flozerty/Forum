@@ -7,3 +7,23 @@
 h1 {
     color: rgb(0, 122, 156);
 }
+
+header {
+    background-color: wheat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10vh;
+}
+
+main {
+    margin-top: 10vh;
+    min-height: 80vh;
+}
+
+footer {
+    background-color: wheat;
+    height: 10vh;
+
+}
