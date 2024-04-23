@@ -1,27 +1,28 @@
 <?php
 namespace App;
 
+// Création de constantes accessibles dans tout le projet :
+
 define('DS', DIRECTORY_SEPARATOR); // le caractère séparateur de dossier (/ ou \)
 // meilleure portabilité sur les différents systêmes.
-define('BASE_DIR', dirname(__FILE__).DS); // pour se simplifier la vie
-define('VIEW_DIR', BASE_DIR."view/");   //le chemin où se trouvent les vues
-define('PUBLIC_DIR', "public/");     //le chemin où se trouvent les fichiers publics (CSS, JS, IMG)
+define('BASE_DIR', dirname(__FILE__).DS);
+define('VIEW_DIR', BASE_DIR."view/"); //le chemin où se trouvent les vues
+define('PUBLIC_DIR', "public/");
 
-define('DEFAULT_CTRL', 'Home');//nom du contrôleur par défaut
-define('ADMIN_MAIL', "admin@gmail.com");//mail de l'administrateur
+define('DEFAULT_CTRL', 'Home');
+define('ADMIN_MAIL', "admin@gmail.com");
 
 require("app/Autoloader.php");
 
 Autoloader::register();
 
-//démarre une session ou récupère la session actuelle
 session_start();
 //et on intègre la classe Session qui prend la main sur les messages en session
 use App\Session as Session;
 
 //---------REQUETE HTTP INTERCEPTEE-----------
-$ctrlname = DEFAULT_CTRL;//on prend le controller par défaut
-//ex : index.php?ctrl=home
+$ctrlname = DEFAULT_CTRL;
+// index.php?ctrl=home
 if(isset($_GET['ctrl'])){
     $ctrlname = $_GET['ctrl'];
 }
@@ -34,7 +35,7 @@ if(!class_exists($ctrlNS)){
 }
 $ctrl = new $ctrlNS();
 
-$action = "index";//action par défaut de n'importe quel contrôleur
+$action = "index"; //action par défaut de n'importe quel contrôleur
 //si l'action est présente dans l'url ET que la méthode correspondante existe dans le ctrl
 if(isset($_GET['action']) && method_exists($ctrl, $_GET['action'])){
     //la méthode à appeller sera celle de l'url
@@ -54,13 +55,12 @@ if($action == "ajax"){ //si l'action était ajax
 }
 else{
     ob_start();//démarre un buffer (tampon de sortie)
+
     $meta_description = $result['meta_description'];
-    /* la vue s'insère dans le buffer qui devra être vidé au milieu du layout */
     include($result['view']);
-    /* je place cet affichage dans une variable */
+
     $page = ob_get_contents();
-    /* j'efface le tampon */
     ob_end_clean();
-    /* j'affiche le template principal (layout) */
+
     include VIEW_DIR."layout.php";
 }
