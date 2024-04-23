@@ -1,6 +1,5 @@
 <?php
 namespace Model\Entities;
-
 use App\Entity;
 
 /*
@@ -11,12 +10,17 @@ final class User extends Entity{
 
   private $id;
   private $pseudo;
+  private $email;
+  private $password;
+  private $inscriptionDate;
+  private $role;
+  private $avatar;
 
   public function __construct($data){         
     $this->hydrate($data);        
   }
 
-    /////////// GETTERS & SETTERS ///////////
+  /////////// GETTERS & SETTERS ///////////
   public function getId(){
     return $this->id;
   }
@@ -34,10 +38,55 @@ final class User extends Entity{
     $this->pseudo = $pseudo;
     return $this;
   }
+  public function getRole()
+  {
+    return $this->role;
+  }
+  public function setRole($role)
+  {
+    $this->role = $role;
+    return $this;
+  }
+  public function getAvatar()
+  {
+    return $this->avatar;
+  }
+  public function setAvatar($avatar)
+  {
+    $this->avatar = $avatar;
+    return $this;
+  } 
+  public function getInscriptionDate()
+  {
+    return $this->inscriptionDate;
+  }
+  public function setInscriptionDate($inscriptionDate)
+  {
+    $this->inscriptionDate = $inscriptionDate;
+    return $this;
+  } 
+  public function getPassword()
+  {
+    return $this->password;
+  }
+  public function setPassword($password)
+  {
+    $this->password = $password;
+
+    return $this;
+  }
+  public function getEmail()
+  {
+    return $this->email;
+  }
+  public function setEmail($email)
+  {
+    $this->email = $email;
+    return $this;
+  }
+///////////////////////////////////////////////
 
   public function __toString() {
     return $this->pseudo;
   }
-    ///////////////////////////////////////
-
 }

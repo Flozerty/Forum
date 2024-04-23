@@ -1,6 +1,5 @@
 <?php
 namespace Model\Entities;
-
 use App\Entity;
 
 /*
@@ -11,6 +10,7 @@ final class Category extends Entity{
 
   private $id;
   private $name;
+  private $icone;
 
   // chaque entité aura le même constructeur grâce à la méthode hydrate (issue de App\Entity)
   public function __construct($data){         
@@ -34,9 +34,19 @@ final class Category extends Entity{
     $this->name = $name;
     return $this;
   }
+  public function getIcone()
+  {
+    return $this->icone;
+  }
+  public function setIcone($icone)
+  {
+    $this->icone = $icone;
+    return $this;
+  }
+  //////////////////////////////////////////
+
   public function __toString(){
     return $this->name;
   }
-  ///////////////////////////////:///////////
-
+  
 }

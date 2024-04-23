@@ -22,34 +22,58 @@ final class Topic extends Entity{
   /////////// GETTERS & SETTERS ///////////
 
   public function getId(){
-      return $this->id;
+    return $this->id;
   }
-
   public function setId($id){
-      $this->id = $id;
-      return $this;
+    $this->id = $id;
+    return $this;
   }
-
   public function getTitle(){
-      return $this->title;
+    return $this->title;
   }
-
   public function setTitle($title){
-      $this->title = $title;
-      return $this;
+    $this->title = $title;
+    return $this;
   }
   public function getUser(){
-      return $this->user;
+    return $this->user;
+  }
+  public function setUser($user){
+    $this->user = $user;
+    return $this;
+  }
+    public function getClosed()
+  {
+    return $this->closed;
   }
 
-  public function setUser($user){
-      $this->user = $user;
-      return $this;
+  public function setClosed($closed)
+  {
+    $this->closed = $closed;
+    return $this;
   }
-  public function __toString(){
-      return $this->title;
+  public function getCreationDate()
+  {
+    return $this->creationDate;
+  }
+  public function setCreationDate($creationDate)
+  {
+    $this->creationDate = $creationDate;
+    return $this;
+  }
+  public function getCategory()
+  {
+    return $this->category;
+  }
+  public function setCategory($category)
+  {
+    $this->category = $category;
+    return $this;
   }
   ///////////////////////////////////////////
+  public function __toString(){
+    return $this->title;
+  }
 
-    
+
 }
