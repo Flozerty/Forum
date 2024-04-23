@@ -5,9 +5,9 @@
 
 <h1>Liste des topics</h1>
 
-<?php
-foreach($topics as $topic ){ ?>
+<?php foreach($topics as $topic) { ?>
 <p>
-  <a href="#"><?= $topic ?></a> par <?= $topic->getUser() ?>
+  <a href="index.php?ctrl=forum&action=topicContent&id=<?= $topic->getId() ?>"><?= $topic ?></a> par
+  <?= $topic->getUser() ?>
 </p>
 <?php }

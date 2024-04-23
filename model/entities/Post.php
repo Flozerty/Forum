@@ -14,6 +14,15 @@ final class Post extends Entity {
   }
 
   /////////// GETTERS & SETTERS ///////////
+  public function getId()
+  {
+    return $this->id;
+  }
+  public function setId($id)
+  {
+    $this->id = $id;
+    return $this;
+  }
   public function getTopic()
   {
     return $this->topic;
@@ -48,15 +57,6 @@ final class Post extends Entity {
   public function setMessageDate($messageDate)
   {
     $this->messageDate = $messageDate;
-    return $this;
-  }
-  public function getId()
-  {
-    return $this->id;
-  }
-  public function setId($id)
-  {
-    $this->id = $id;
     return $this;
   }
   ///////////////////////////////////////////
