@@ -14,6 +14,7 @@ final class Topic extends Entity{
   private $category;
   private $creationDate;
   private $closed;
+  private $intro;
 
   public function __construct($data){         
     $this->hydrate($data);        
@@ -70,10 +71,18 @@ final class Topic extends Entity{
     $this->category = $category;
     return $this;
   }
+  public function getIntro()
+  {
+    return $this->intro;
+  }
+  public function setIntro($intro)
+  {
+    $this->intro = $intro;
+    return $this;
+  }
+  
   ///////////////////////////////////////////
   public function __toString(){
     return $this->title;
   }
-
-
 }

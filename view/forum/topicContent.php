@@ -4,6 +4,7 @@
 ?>
 
 <h1><?= $topic ?></h1>
+<p><?= $topic->getIntro() ?></p>
 
 <?php if(!empty($posts)) {
   foreach($posts as $post) { ?>

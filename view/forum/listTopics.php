@@ -3,7 +3,7 @@
     $topics = $result["data"]['topics']; 
 ?>
 
-<h1>Liste des topics</h1>
+<h1>Liste des topics de <?= mb_strtoupper($category->getName()) ?></h1>
 
 <?php if(!empty($topics)) {
 
