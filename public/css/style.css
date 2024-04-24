@@ -38,12 +38,35 @@ header {
   display: flex;
   z-index: 5;
 
+
   nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     padding: 0 2vw;
+  }
+
+  #search {
+    max-width: 500px;
+    width: 45%;
+    position: relative;
+
+    input {
+      height: 40px;
+      width: 100%;
+      border-radius: 15px;
+      padding: 10px;
+      padding-left: 50px;
+    }
+
+    img {
+      position: absolute;
+      left: 10px;
+      top: 10%;
+      bottom: 10%;
+      height: 80%;
+    }
   }
 
   a {
@@ -88,13 +111,40 @@ main {
     width: 250px;
     background-color: var(--bluemid);
 
-    #sideBar-categories {
-      margin-top: 15px;
+    nav {
+      width: 80%;
     }
 
-    ul {
-      margin-top: 8px;
+    #sideBar-categories {
+      margin-top: 15px;
+
+
+
+      #categoriesListContainer {
+        display: flex;
+        margin: 10px 0;
+
+        #hrBar {
+          width: 2px;
+          height: auto;
+          background-color: var(--darkblue);
+          margin: 0 10px;
+        }
+      }
+
+      li {
+        padding-left: 15px;
+
+        a {
+          display: flex;
+        }
+      }
+
+      #categoryIcone {
+        width: 35px;
+      }
     }
+
 
     #community-activity {
       display: flex;

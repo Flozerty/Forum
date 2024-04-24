@@ -1,6 +1,5 @@
 <?php
   $categories = $result["data"]['categories']; 
-
 ?>
 
 <!DOCTYPE html>
@@ -43,12 +42,14 @@
             </a>
           </div>
 
-          <a href="index.php">Accueil</a>
-
-          <?php if(App\Session::isAdmin()){ ?>
-
+          <?php if(App\Session::isAdmin()) { ?>
           <a href="index.php?ctrl=home&action=users">Voir la liste des gens</a>
           <?php } ?>
+
+          <div id="search">
+            <img src="public/img/wenSearch.png" alt="image loupe de la barre de recherche">
+            <input type="search" placeholder="recherchez un topic, une catégorie">
+          </div>
 
           <div id="nav-right">
 
@@ -63,13 +64,11 @@
 
             <a href="index.php?ctrl=security&action=login">Connexion</a>
             <a href="index.php?ctrl=security&action=register">Inscription</a>
-            <a href="index.php?ctrl=forum&action=index">Liste des catégories</a>
 
             <?php } ?>
           </div>
         </nav>
       </header>
-
 
       <main id="forum">
         <div id="sideNav-left">
@@ -79,20 +78,23 @@
             </p>
             <div id="sideBar-categories">
               <p>
-                <a href="index.php?ctrl=forum&action=index">Les thématiques :</a>
+                <a href="index.php?ctrl=forum&action=listCategories">THÉMATIQUES :</a>
               </p>
-              <ul id="nav-links">
+              <div id="categoriesListContainer">
+                <div id="hrBar"></div>
+                <ul id="nav-links">
 
-                <?php foreach($categories as $category) { ?>
-                <li class="nav-link">
-                  <a href="index.php?ctrl=forum&action=listTopicsByCategory&id=<?= $category->getId() ?>">
-                    <?= $category->getIcone() ?>
-                    <?= $category->getName() ?>
-                  </a>
-                </li>
-                <?php } ?>
+                  <?php foreach($categories as $category) { ?>
+                  <li class="nav-link">
+                    <a href="index.php?ctrl=forum&action=listTopicsByCategory&id=<?= $category->getId() ?>">
+                      <div id="categoryIcone"><?= $category->getIcone() ?></div>
+                      <?= $category->getName() ?>
+                    </a>
+                  </li>
+                  <?php } ?>
 
-              </ul>
+                </ul>
+              </div>
             </div>
           </nav>
           <div id="community-activity">activity</div>

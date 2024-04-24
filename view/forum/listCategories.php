@@ -1,11 +1,11 @@
 <?php
-  $categories = $result["data"]['categories']; 
+  $listCategories = $result["data"]['listCategories']; 
 ?>
 
 <h1>Liste des catégories</h1>
 
 <?php
-foreach($categories as $category ){ ?>
+foreach($listCategories as $category ){ ?>
 <p>
   <a href="index.php?ctrl=forum&action=listTopicsByCategory&id=<?= $category->getId() ?>">
     <?= $category->getName() ?>

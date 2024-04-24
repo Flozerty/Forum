@@ -12,19 +12,31 @@ use Model\Managers\UserManager;
 
 class ForumController extends AbstractController implements ControllerInterface {
 
-  public function index()
-  {
-    // créer une nouvelle instance de CategoryManager
+  public function index() {
     $categoryManager = new CategoryManager();
-    // récupérer la liste de toutes les catégories grâce à la méthode findAll de Manager.php (triés par nom)
-    $categories = $categoryManager->findAll(["name", "DESC"]);
+    $categories = $categoryManager->findAll();
 
-    // le controller communique avec la vue "listCategories" (view) pour lui envoyer la liste des catégories (data)
     return [
-      "view" => VIEW_DIR . "forum/listCategories.php",
-      "meta_description" => "Liste des catégories du forum",
+      "view" => VIEW_DIR."home.php",
+      "meta_description" => "Page d'accueil du forum",
       "data" => [
         "categories" => $categories
+      ]
+    ];
+  }
+
+  public function listCategories() {
+
+    $categoryManager = new CategoryManager();
+    $categories = $categoryManager->findAll();
+    $listCategories = $categoryManager->findAll(["name"]);
+
+    return [
+      "view" => VIEW_DIR."forum/listCategories.php",
+      "meta_description" => "Liste des catégories : ",
+      "data" => [
+        "categories" => $categories,
+        "listCategories" => $listCategories
       ]
     ];
   }
@@ -33,6 +45,7 @@ class ForumController extends AbstractController implements ControllerInterface 
 
     $topicManager = new TopicManager();
     $categoryManager = new CategoryManager();
+    $categories = $categoryManager->findAll();
     $category = $categoryManager->findOneById($id);
     $topics = $topicManager->findTopicsByCategory($id);
 
@@ -40,6 +53,7 @@ class ForumController extends AbstractController implements ControllerInterface 
       "view" => VIEW_DIR."forum/listTopics.php",
       "meta_description" => "Liste des topics par catégorie : " . $category,
       "data" => [
+        "categories" => $categories,
         "category" => $category,
         "topics" => $topics
       ]
@@ -49,15 +63,17 @@ class ForumController extends AbstractController implements ControllerInterface 
   public function topicContent($id) {
 
     $topicManager = new TopicManager();
+    $categoryManager = new CategoryManager();
     $postManager = new PostManager();
+    $categories = $categoryManager->findAll();
     $topic = $topicManager->findOneById($id);
     $posts = $postManager->findPostsByTopic($id);
-    var_dump($posts);
 
     return [
       "view" => VIEW_DIR."forum/topicContent.php",
       "meta_description" => $topic,
       "data" => [
+        "categories" => $categories,
         "topic" => $topic,
         "posts" => $posts
       ]
