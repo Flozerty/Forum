@@ -47,7 +47,7 @@ class ForumController extends AbstractController implements ControllerInterface 
   }
 
   public function topicContent($id) {
-    
+
     $topicManager = new TopicManager();
     $postManager = new PostManager();
     $topic = $topicManager->findOneById($id);
