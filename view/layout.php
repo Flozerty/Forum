@@ -63,7 +63,6 @@
             <?php } else { ?>
 
             <a href="index.php?ctrl=security&action=login">Connexion</a>
-            <a href="index.php?ctrl=security&action=register">Inscription</a>
 
             <?php } ?>
           </div>
