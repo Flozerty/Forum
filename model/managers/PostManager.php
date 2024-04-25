@@ -26,4 +26,13 @@ class PostManager extends Manager{
       $this->className
     );
   }
+
+  public function activesAllTime() {
+    return"";
+  }
+
+  public function activesWeek() {
+    return"";
+
+  }
 }

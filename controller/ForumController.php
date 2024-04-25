@@ -14,13 +14,18 @@ class ForumController extends AbstractController implements ControllerInterface 
 
   public function index() {
     $categoryManager = new CategoryManager();
+    $postManager = new PostManager();
     $categories = $categoryManager->findAll();
 
+    $activesAllTime = $postManager->activesAllTime();
+    $activesWeek = $postManager->activesWeek();
     return [
       "view" => VIEW_DIR."home.php",
       "meta_description" => "Page d'accueil du forum",
       "data" => [
-        "categories" => $categories
+        "categories" => $categories,
+        "activesAllTime"=> $activesAllTime,
+        "activesWeek"=> $activesWeek,
       ]
     ];
   }

@@ -4,6 +4,7 @@ namespace Controller;
 use App\AbstractController;
 use App\ControllerInterface;
 use Model\Managers\CategoryManager;
+use Model\Managers\PostManager;
 use Model\Managers\TopicManager;
 use Model\Managers\UserManager;
 

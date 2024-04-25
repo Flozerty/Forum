@@ -9,6 +9,8 @@
 
 <form action="#" id="createTopicForm" method="post">
 
+  <legend>Créer un nouveau topic</legend>
+
   <div id="formTopicTitle">
     <label for="title"></label>
     <input type="text" id="title" name="title" placeholder="Titre du topic">

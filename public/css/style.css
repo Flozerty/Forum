@@ -267,6 +267,11 @@ footer {
   border: 1px solid var(--darkblue);
   border-radius: 20px;
 
+  legend {
+    margin-bottom: 15px;
+
+  }
+
   #formTopicTitle {
     width: 50%;
 
