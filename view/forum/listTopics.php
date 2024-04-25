@@ -40,13 +40,14 @@ foreach($topics as $topic) {
 <section id="openedTopic">
   <h2>Topics ouverts</h2>
 
-  <div class="listTopics">
+  <div class="listContents">
     <?php foreach($openTopics as $topic) { ?>
 
-    <p><a href="index.php?ctrl=forum&action=topicContent&id=<?= $topic->getId() ?>"><?= $topic ?></a></p>
-    <div class="topicInfos">
-      <p class="userTopic"><?= $topic->getUser() ?></p>
-      <p class="dateTopic"><?= $topic->getCreationDate() ?></p>
+    <div class="content-bubble">
+      <h3><a href="index.php?ctrl=forum&action=topicContent&id=<?= $topic->getId() ?>"><?= $topic ?></a></h3>
+
+      <p class="topicInfos"><?= $topic->getUser() ?>, le <?= $topic->getCreationDate() ?></p>
+
     </div>
 
     <?php } ?>
@@ -54,19 +55,22 @@ foreach($topics as $topic) {
 </section>
 
 <!-- On affiche les topics fermés -->
-<section id="closedTopic">
+<section id="closedTopics">
   <h2>Topics fermés</h2>
 
-  <?php foreach($closedTopics as $topic) { ?>
+  <div class="listContents">
+    <?php foreach($closedTopics as $topic) { ?>
 
-  <p>
-    <a href="index.php?ctrl=forum&action=topicContent&id=<?= $topic->getId() ?>"><?= $topic ?></a>
-    <?= $topic->getUser() ?>
-  </p>
+    <div class="content-bubble">
+      <h3><a href="index.php?ctrl=forum&action=topicContent&id=<?= $topic->getId() ?>"><?= $topic ?></a></h3>
 
-  <?php } ?>
+      <p class="topicInfos"><?= $topic->getUser() ?>, le <?= $topic->getCreationDate() ?></p>
+    </div>
+
+    <?php } ?>
+  </div>
 </section>
 
 <?php } else { ?>
 <p>Aucun topic dans cette catégorie.</p>
-<?php }
+<?php } ?>
