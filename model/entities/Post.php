@@ -50,11 +50,11 @@ final class Post extends Entity {
     $this->messageContent = $messageContent;
     return $this;
   }
-  public function getMessageDate()
+  public function getPostDate()
   {
     return $this->postDate;
   }
-  public function setMessageDate($postDate)
+  public function setPostDate($postDate)
   {
     $this->postDate = $postDate;
     return $this;
