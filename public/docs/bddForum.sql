@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `topic` (
   CONSTRAINT `FK_sujet_utilisateur` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table forum.topic : ~0 rows (environ)
+-- Listage des données de la table forum.topic : ~3 rows (environ)
 DELETE FROM `topic`;
 INSERT INTO `topic` (`id_topic`, `dateCreation`, `title`, `closed`, `category_id`, `user_id`) VALUES
 	(1, '2024-04-17', 'omelette à l\'oignon', NULL, 3, 2),
@@ -105,7 +105,7 @@ INSERT INTO `user` (`id_user`, `pseudo`, `email`, `password`, `dateInscription`,
 	(1, 'flozerty', 'floris.louerat@gmail.com', '12345azerty', '2024-04-19', 'admin', NULL),
 	(2, 'bob', 'bob.bob@bob.bob', 'bobobobobo', '2024-04-19', NULL, NULL),
 	(3, 'test', 'test@gmail.com', 'test123', '2024-04-19', NULL, NULL),
-	(6, 'arklane', 'arklane.gmail.com', 'arklemochedu73', '2024-04-19', 'modo', NULL);
+	(6, 'arklane', 'arklane@gmail.com', 'arklemochedu73', '2024-04-19', 'modo', NULL);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
