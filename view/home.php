@@ -1,5 +1,6 @@
 <?php
   $popularTopics = $result["data"]['popularTopics']; 
+  $lastTopics = $result["data"]['lastTopics']; 
 ?>
 
 <h1>BIENVENUE SUR FORUM, le forum</h1>
@@ -31,6 +32,13 @@
 
 <section id="lastTopics">
   <h2>Les dernières créations</h2>
+
+  <?php foreach ($lastTopics as $topic) { ?>
+  <div class="lastTopic">
+    <?= $topic->getTitle() ?>
+    Créé par <?= $topic->getUser() ?> le ( => il y a) <?= $topic->getCreationDate() ?>
+  </div>
+  <?php } ?>
 
 </section>
 

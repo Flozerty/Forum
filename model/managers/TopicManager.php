@@ -45,7 +45,7 @@ class TopicManager extends Manager {
   public function popularTopics() {
  
     $sql = "
-    SELECT title, pseudo AS user, DATE_FORMAT(creationDate, '%d/%m/%Y') AS creationDate, COUNT(post.topic_id) AS nbPosts
+    SELECT id_topic, title, pseudo AS user, DATE_FORMAT(creationDate, '%d/%m/%Y') AS creationDate, COUNT(post.topic_id) AS nbPosts
     FROM $this->tableName
     LEFT JOIN post ON post.topic_id = topic.id_topic
     INNER JOIN user ON user.id_user = topic.user_id
@@ -56,6 +56,22 @@ class TopicManager extends Manager {
 
     return $this->getMultipleResults(
       DAO::select($sql), 
+      $this->className
+    );
+  }
+
+  public function lastTopics() {
+ 
+    $sql = "
+    SELECT id_topic, title, pseudo AS user, DATE_FORMAT(creationDate, '%d/%m/%Y') AS creationDate
+    FROM $this->tableName
+    INNER JOIN user ON user.id_user = topic.user_id
+    ORDER BY creationDate DESC
+    LIMIT 5
+    ";
+
+    return $this->getMultipleResults(
+      DAO::select($sql),
       $this->className
     );
   }

@@ -14,6 +14,7 @@ class HomeController extends AbstractController implements ControllerInterface {
     $categoryManager = new CategoryManager();
     $categories = $categoryManager->findAll();
     $popularTopics = $topicManager->popularTopics();
+    $lastTopics = $topicManager->lastTopics();
 
     return [
       "view" => VIEW_DIR."home.php",
@@ -21,7 +22,7 @@ class HomeController extends AbstractController implements ControllerInterface {
       "data" => [
         "categories" => $categories,
         "popularTopics"=> $popularTopics,
-        
+        "lastTopics" => $lastTopics,
       ]
     ];
   }
