@@ -4,7 +4,7 @@ use App\Entity;
 
 final class Post extends Entity {
   private $id;
-  private $messageDate;
+  private $postDate;
   private $messageContent;
   private $user;
   private $topic;
@@ -52,11 +52,11 @@ final class Post extends Entity {
   }
   public function getMessageDate()
   {
-    return $this->messageDate;
+    return $this->postDate;
   }
-  public function setMessageDate($messageDate)
+  public function setMessageDate($postDate)
   {
-    $this->messageDate = $messageDate;
+    $this->postDate = $postDate;
     return $this;
   }
   ///////////////////////////////////////////

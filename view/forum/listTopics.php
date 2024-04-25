@@ -5,6 +5,8 @@
 
 <h1>Liste des topics de <?= mb_strtoupper($category->getName()) ?></h1>
 
+<a href="#"> <button class="addButton">Créer un nouveau topic</button></a>
+
 <?php if(!empty($topics)) {
 
 foreach($topics as $topic) { ?>
