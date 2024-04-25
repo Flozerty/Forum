@@ -6,10 +6,7 @@
 <h1><?= $topic ?></h1>
 <p><?= $topic->getIntro() ?></p>
 
-<form action="" method="post" id="newPostForm">
-  <label for="newPost"></label>
-  <input type="text" id="newPost" name="newPost" placeholder="ajoutez un commentaire">
-</form>
+
 
 <!-- S'il y a déjà des messages dans le topic -->
 <?php if(!empty($posts)) {
@@ -21,4 +18,9 @@
 } else { ?>
 <!-- S'il n'y a aucun message -->
 <p>Aucun message</p>
-<?php }
+<?php } ?>
+
+<form action="#" method="post" id="newPostForm">
+  <textarea id="newPost" name="newPost" placeholder="ajoutez un commentaire"></textarea>
+  <input type="submit" value="envoyer" class="submitButton">
+</form>
