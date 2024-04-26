@@ -77,13 +77,13 @@ class TopicManager extends Manager {
   }
   
   public function lastTopicsPosts() {
-    $sql= "
-    SELECT DISTINCT id_post, topic.title, postDate, messageContent, post.user_id, pseudo
-    FROM topic
-    LEFT JOIN post ON post.topic_id = topic.id_topic
-    LEFT JOIN user ON user.id_user = post.user_id
-    ORDER BY postDate DESC
-    WHERE
-    " ;
+    // $sql= "
+    // SELECT DISTINCT id_post, topic.title, postDate, messageContent, post.user_id, pseudo
+    // FROM topic
+    // LEFT JOIN post ON post.topic_id = topic.id_topic
+    // LEFT JOIN user ON user.id_user = post.user_id
+    // ORDER BY postDate DESC
+    // WHERE
+    // " ;
   }
 }
