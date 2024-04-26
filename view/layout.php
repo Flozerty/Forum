@@ -1,5 +1,6 @@
 <?php
   $categories = $result["data"]['categories']; 
+  $activePage = filter_input(INPUT_GET, "action", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 ?>
 
 <!DOCTYPE html>
@@ -11,8 +12,8 @@
   <meta name="description" content="<?= $meta_description ?>">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <script src="https://cdn.tiny.cloud/1/zg3mwraazn1b2ezih16je1tc6z7gwp5yd4pod06ae5uai8pa/tinymce/5/tinymce.min.js"
-    referrerpolicy="origin"></script>
+  <!-- <script src="https://cdn.tiny.cloud/1/zg3mwraazn1b2ezih16je1tc6z7gwp5yd4pod06ae5uai8pa/tinymce/5/tinymce.min.js"
+    referrerpolicy="origin"></script> -->
 
   <script src="https://kit.fontawesome.com/7252ea4d54.js" crossorigin="anonymous"></script>
 
@@ -29,6 +30,10 @@
       <!-- c'est ici que les messages (erreur ou succès) s'affichent-->
       <h3 class="message" style="color: red"><?= App\Session::getFlash("error") ?></h3>
       <h3 class="message" style="color: green"><?= App\Session::getFlash("success") ?></h3>
+
+      <!-------------------------------------------->
+      <!------------------ header ------------------>
+      <!-------------------------------------------->
       <header>
         <nav>
           <div id="logo-container">
@@ -62,6 +67,7 @@
 
             <?php } else { ?>
 
+            <a href="index.php?ctrl=security&action=register">Inscription</a>
             <a href="index.php?ctrl=security&action=login">Connexion</a>
 
             <?php } ?>
@@ -70,6 +76,14 @@
       </header>
 
       <main id="forum">
+
+        <!-------------------------------------------->
+        <!---------------- side-left ----------------->
+        <!-------------------------------------------->
+
+        <!-- sauf quand login / register -->
+        <?php if($activePage != "login" && $activePage != "register" && $activePage != "traitement") { ?>
+
         <div id="sideNav-left">
           <nav>
             <p>
@@ -79,6 +93,8 @@
               <p>
                 <a href="index.php?ctrl=forum&action=listCategories">THÉMATIQUES :</a>
               </p>
+
+              <!-- Liste des catégories -->
               <div id="categoriesListContainer">
                 <div id="hrBar"></div>
                 <ul id="nav-links">
@@ -96,13 +112,24 @@
               </div>
             </div>
           </nav>
+
+          <!-- Activité de la communauté -->
           <div id="community-activity">activity</div>
         </div>
+
+        <?php } ?>
 
         <div id="main-wrapper">
           <!-------------------------- insertion -------------------------->
           <?= $page ?>
         </div>
+
+        <!-------------------------------------------->
+        <!---------------- side-right ---------------->
+        <!-------------------------------------------->
+
+        <!-- sauf quand login / register -->
+        <?php if($activePage != "login" && $activePage != "register" && $activePage != "traitement") { ?>
 
         <aside id="layout-aside">
           <div id="myActives">
@@ -111,9 +138,13 @@
           aside
           <div id="poll">Poll</div>
         </aside>
+        <?php } ?>
       </main>
     </div>
 
+    <!-------------------------------------------->
+    <!------------------ footer ------------------>
+    <!-------------------------------------------->
     <footer>
       <div id="footer-content">
         <div id="contact">
@@ -156,7 +187,7 @@
     </footer>
   </div>
 
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+  <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
   </script>
   <script>
@@ -186,7 +217,7 @@
       content_css: '//www.tiny.cloud/css/codepen.min.css'
     });
   })
-  </script>
+  </script> -->
   <script src="<?= PUBLIC_DIR ?>/js/script.js"></script>
 </body>
 
