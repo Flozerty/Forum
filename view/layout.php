@@ -1,5 +1,7 @@
 <?php
+if(isset($result["data"]['categories'])) {
   $categories = $result["data"]['categories']; 
+}
   $activePage = filter_input(INPUT_GET, "action", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 ?>
 

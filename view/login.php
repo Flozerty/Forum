@@ -1,3 +1,9 @@
+<?php 
+if(isset($result["data"]['message'])) {
+  $message = $result["data"]['message'];
+}
+?>
+
 <form action="ctrl=security&action=traitement&type=login" method="post">
   <div id="userPseudo">
     <label for="pseudo">Pseudo :</label>
@@ -12,3 +18,8 @@
 </form>
 
 <p>Nouveau? <a href="index.php?ctrl=security&action=register">cliquez ici</a></p>
+
+<?php
+if(isset($message)) {
+echo $message;
+}

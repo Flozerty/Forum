@@ -25,4 +25,16 @@ class UserManager extends Manager{
       $this->className
     );
   }
+
+  public function findUserByPseudo($pseudo) {
+    $sql = "
+    SELECT *
+    FROM $this->tableName
+    WHERE pseudo = :pseudo
+    ";
+    return $this->getOneOrNullResult(
+      DAO::select($sql, ['pseudo' => $pseudo]), 
+      $this->className
+    );
+  }
 }
