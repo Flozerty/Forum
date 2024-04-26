@@ -33,7 +33,7 @@ class UserManager extends Manager{
     WHERE pseudo = :pseudo
     ";
     return $this->getOneOrNullResult(
-      DAO::select($sql, ['pseudo' => $pseudo]), 
+      DAO::select($sql, ['pseudo' => $pseudo], false), 
       $this->className
     );
   }
