@@ -1,6 +1,11 @@
 <?php
     $topic = $result["data"]['topic']; 
     $posts = $result["data"]['posts']; 
+
+    $user = "";
+    if(isset($_SESSION["user"])) {
+      $user = $_SESSION["user"]->getPseudo();
+    }
 ?>
 
 <h1><?= $topic ?></h1>
@@ -12,7 +17,7 @@
   <?php if(!empty($posts)) {
   foreach($posts as $post) { ?>
 
-  <div class="topic-post">
+  <div class="topic-post <?= ($user == $post->getUser()) ? "myPost" : "othersPost" ?>">
     <div class="postInfos">
       <p><?= $post->getUser() ?></p>
       <p>il y a <?= $post->getPostDate() ?></p>

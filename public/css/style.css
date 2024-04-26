@@ -304,8 +304,6 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    align-self: flex-start;
-    /* align-self: flex-end pour les posts de l'user connecté */
 
     .postInfos {
       display: flex;
@@ -313,6 +311,16 @@ footer {
       justify-content: space-between;
       padding: 15px;
     }
+  }
+
+  .othersPost {
+    align-self: flex-start;
+
+  }
+
+  .myPost {
+    align-self: flex-end;
+
   }
 }
 
