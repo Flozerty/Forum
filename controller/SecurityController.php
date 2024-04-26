@@ -9,7 +9,7 @@ use Model\Managers\UserManager;
 class SecurityController extends AbstractController{
   // contiendra les méthodes liées à l'authentification : register, login et logout
 
-
+  
         //////////////////////////////////////////////
         ////////// TRAITEMENT D'UN REGISTER //////////
         //////////////////////////////////////////////
@@ -32,7 +32,6 @@ class SecurityController extends AbstractController{
           "data" => ["message" => $message]
         ];
       }
-
 
       // on vérifie que tout est correct à l'envoi
 
@@ -100,17 +99,71 @@ class SecurityController extends AbstractController{
         /////////// TRAITEMENT D'UN LOGIN ////////////
         //////////////////////////////////////////////
   public function login () {
-    return [
-      "view" => VIEW_DIR."login.php",
-      "meta_description" => "Page de connexion au forum",
-      "data" => [
-      ]
-    ];
+    if($_POST["submit"]) {
+
+      $userManager = new UserManager();
+
+      $pseudo = filter_input(INPUT_POST, "pseudo", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+      $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+      // fonction de redirection avec le message d'erreur
+      function redirectAndMessage($message) { 
+        return [
+          "view" => VIEW_DIR."login.php",
+          "meta_description" => "Page de création de compte",
+          "data" => ["message" => $message]
+        ];
+      }
+
+      // on vérifie que tout est correct à l'envoi
+      
+      // S'il manque un input
+      if (!($pseudo && $password)) {
+        $message = "<p class='alertNotif'>Merci de renseigner vos identifiants :)</p>";
+        return redirectAndMessage($message);
+      }
+
+      // On vérifie que le pseudo existe et que les mots de passe correspondent
+      $user = $userManager->findUserByPseudo($pseudo);
+      $hach = $user->getPassword();
+
+      // S'il ne trouve pas le pseudo
+      if(!$user) {
+        $message = "<p class='alertNotif'>Pseudo ou  de passe incorrect. Veuillez réessayer.</p>";
+        return redirectAndMessage($message);
+      }
+
+      // Si le mot de passe est faux
+        if(!password_verify($password, $hach)) {
+        $message = "<p class='alertNotif'> ou mot de passe incorrect. Veuillez réessayer.</p>";
+        return redirectAndMessage($message);
+      }
+
+      // // Si tout est bon, on connecte l'user
+      $_SESSION["user"] = $user;
+      return [
+        "view" => VIEW_DIR."index.php",
+        "meta_description" => "Page d'accueil'"
+      ];
+
+      // S'il n'y a aucun formulaire a traiter (on arrive seulement sur la page)
+    } else {
+      return [
+        "view" => VIEW_DIR."login.php",
+        "meta_description" => "Page de connexion"
+      ];
+    }
   }
   
         //////////////////////////////////////////////
         /////////////////// LOGOUT ///////////////////
         //////////////////////////////////////////////
-  public function logout () {}
+  public function logout () {
+    $_SESSION["user"] = null;
+    return [
+      "view" => VIEW_DIR."index.php",
+      "meta_description" => "Page d'accueil'"
+    ];
+  }
   
 }

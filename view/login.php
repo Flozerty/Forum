@@ -4,17 +4,17 @@ if(isset($result["data"]['message'])) {
 }
 ?>
 
-<form action="ctrl=security&action=traitement&type=login" method="post">
-  <div id="userPseudo">
+<form action="index.php?ctrl=security&action=login" method="post">
+  <div id="userPseudo" class="input-container">
     <label for="pseudo">Pseudo :</label>
     <input type="text" name="pseudo" id="pseudo">
   </div>
 
-  <div id="userPass">
+  <div id="userPass" class="input-container">
     <label for="password">Mot de passe :</label>
     <input type="password" name="password" id="password">
   </div>
-  <input type="submit" value="connexion">
+  <input type="submit" name="submit" value="connexion">
 </form>
 
 <p>Nouveau? <a href="index.php?ctrl=security&action=register">cliquez ici</a></p>
