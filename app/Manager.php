@@ -17,7 +17,8 @@ abstract class Manager{
   public function findAll($order = null){
 
     $orderQuery = ($order) ?                 
-      "ORDER BY ".$order[0]. " ".$order[1] :
+      "ORDER BY ".$order[0]
+      .(isset($order[1]) ? " $order[1]" : "") :
       "";
 
     $sql = "
