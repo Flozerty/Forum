@@ -26,10 +26,10 @@ use App\Session;
   <h2>Les topics populaires</h2>
 
   <?php foreach ($popularTopics as $topic) { ?>
-  <div class="popularTopic">
-    <?= $topic->getTitle() ?>
-    <?= $topic->getNbPosts() ?> posts
-    Créé par <?= $topic->getUser() ?> le <?= $topic->getCreationDate() ?>
+  <div class="popularTopic content-bubble">
+    <p class="topicTitle"><?= $topic->getTitle() ?></p>
+    <p class="topicPosts"><?= $topic->getNbPosts() ?> posts</p>
+    <p class="topicInfos"><?= $topic->getUser() ?>, le <?= $topic->getCreationDate() ?></p>
   </div>
   <?php } ?>
 
@@ -41,10 +41,13 @@ use App\Session;
   <h2>Les dernières créations</h2>
 
   <?php foreach ($lastTopics as $topic) { ?>
-  <div class="lastTopic">
-    <?= $topic->getTitle() ?>
-    Créé par <?= $topic->getUser() ?> le ( => il y a) <?= $topic->getCreationDate() ?>
-  </div>
+  <article class="lastTopic content-bubble">
+    <div class="topicInfos">
+      <p class="topicTitle"><?= $topic->getTitle() ?></p>
+      <p class="topicUser">par <?= $topic->getUser() ?> le ( => il y a) <?= $topic->getCreationDate() ?></p>
+    </div>
+    <p class="topicIntro"><?= $topic->getIntro() ?></p>
+  </article>
   <?php } ?>
 
 </section>
@@ -53,5 +56,6 @@ use App\Session;
 
 <section id="lastPosts">
   <h2>Les derniers topics actifs</h2>
-
+  <div class="lastActiveTopic content-bubble">
+  </div>
 </section>

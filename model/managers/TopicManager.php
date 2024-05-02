@@ -63,7 +63,7 @@ class TopicManager extends Manager {
   public function lastTopics() {
  
     $sql = "
-    SELECT id_topic, title, pseudo AS user, DATE_FORMAT(creationDate, '%d/%m/%Y') AS creationDate
+    SELECT *, pseudo AS user, DATE_FORMAT(creationDate, '%d/%m/%Y') AS creationDate
     FROM $this->tableName
     INNER JOIN user ON user.id_user = topic.user_id
     ORDER BY topic.creationDate DESC

@@ -3,7 +3,8 @@
   --bluemid: #ACC8E5;
   --lightblue: #D6E5F5;
   --white: #F2F2F2;
-  --transitionTime: 0.3s
+  --transitionTime: 0.3s;
+  --transformScaleTopic: scale(1.04);
 }
 
 * {
@@ -280,6 +281,45 @@ footer {
   margin-bottom: 20px;
 }
 
+.popularTopic,
+.lastTopic,
+.lastActiveTopic {
+  display: flex;
+  width: 60%;
+  justify-content: space-between;
+  position: relative;
+  transition: var(--transitionTime);
+  /* display grid a faire */
+
+  &:hover {
+    transform: var(--transformScaleTopic);
+  }
+
+  .topicInfos {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.popularTopic .topicPosts {
+  position: absolute;
+  display: inline-block;
+  left: 45%;
+}
+
+.lastTopic {
+  flex-direction: column;
+
+  .topicIntro {
+    background-color: var(--white);
+    margin-top: 20px;
+    min-height: 50px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    text-align: center;
+  }
+}
+
 /*////////////////////////////////////*/
 /*///////// LIST CATEGORIES //////////*/
 /*////////////////////////////////////*/
@@ -378,7 +418,8 @@ footer {
   }
 
   #formTopicTitle,
-  #formCategoryName {
+  #formCategoryName,
+  #formCategoryIcone {
     width: 50%;
 
     input {
@@ -386,6 +427,7 @@ footer {
       height: 2rem;
       border-radius: 10px;
       padding: 0 10px;
+      margin-bottom: 15px;
     }
   }
 
