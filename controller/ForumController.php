@@ -118,7 +118,7 @@ class ForumController extends AbstractController implements ControllerInterface 
     ]);
     AbstractController::redirectTo($ctrl = "forum", $action = "listTopicsByCategory", $id = $idCategory);
   }
-  public function createCategory() {
+  public function addCategory() {
     $categoryManager = new CategoryManager();
 
     $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);

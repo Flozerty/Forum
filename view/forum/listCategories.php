@@ -9,7 +9,7 @@ use App\Session;
 
 <?php if(Session::isAdmin()) { ?>
 <button class="addButton">Créer une catégorie</button>
-
+<!-- formulaire création catégorie -->
 <form action="index.php?ctrl=forum&action=addCategory" id="createForm" method="post">
   <legend>Créer une nouvelle catégorie</legend>
 
@@ -25,6 +25,7 @@ use App\Session;
 </form>
 <?php } ?>
 
+<!-- liste des catégories -->
 <section id="allCategories-container">
   <?php
 foreach($listCategories as $category ){ ?>
@@ -38,6 +39,5 @@ foreach($listCategories as $category ){ ?>
       <?= $category->getName() ?>
     </a>
   </div>
-
   <?php } ?>
 </section>
