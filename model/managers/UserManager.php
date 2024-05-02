@@ -38,11 +38,14 @@ class UserManager extends Manager{
     );
   }
 
+  // DATE_SUB(CURDATE(), INTERVAL 7 DAY) : 
+  // On peut DATE_SUB et DATE_ADD
   public function activesWeek() {
     $sql= "
     SELECT id_user, user.pseudo, COUNT(*) AS nbPosts
     FROM $this->tableName
     INNER JOIN post ON post.user_id = user.id_user
+    WHERE postDate > DATE_SUB(CURDATE(), INTERVAL 7 DAY)
     GROUP BY id_user
     ORDER BY nbPosts DESC 
     LIMIT 5
