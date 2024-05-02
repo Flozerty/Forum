@@ -15,6 +15,7 @@ final class User extends Entity{
   private $inscriptionDate;
   private $role;
   private $avatar;
+  private $nbPosts;
 
   public function __construct($data){         
     $this->hydrate($data);        
@@ -83,6 +84,14 @@ final class User extends Entity{
     $this->email = $email;
     return $this;
   }
+  public function getNbPosts()
+  {
+    return $this->nbPosts;
+  }
+  public function setNbPosts($nbPosts)
+  {
+    $this->nbPosts = $nbPosts;
+  }
 ///////////////////////////////////////////////
 
   public function __toString() {
@@ -96,4 +105,6 @@ final class User extends Entity{
       return false;
     }
   }
+
+
 }
