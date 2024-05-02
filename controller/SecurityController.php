@@ -4,6 +4,7 @@ namespace Controller;
 use App\AbstractController;
 use App\ControllerInterface;
 use Model\Managers\CategoryManager;
+use Model\Managers\TopicManager;
 use Model\Managers\UserManager;
 
 class SecurityController extends AbstractController{
@@ -139,12 +140,11 @@ class SecurityController extends AbstractController{
         return redirectAndMessage($message);
       }
 
-      // // Si tout est bon, on connecte l'user
+      
+      // // Si tout est bon, on connecte l'user + redirect Home
       $_SESSION["user"] = $user;
-      return [
-        "view" => VIEW_DIR."index.php",
-        "meta_description" => "Page d'accueil"
-      ];
+      AbstractController::redirectTo($ctrl = "home", $action = "index", $id = null);
+
 
       // S'il n'y a aucun formulaire a traiter (on arrive seulement sur la page)
     } else {
