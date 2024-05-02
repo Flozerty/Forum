@@ -14,7 +14,7 @@
 
 a {
   color: var(--darkblue);
-  /* text-decoration: none; */
+  text-decoration: none;
 }
 
 ul {
@@ -49,10 +49,15 @@ section {
   justify-content: space-between;
   background-color: var(--lightblue);
   padding: 20px 30px;
+  position: relative;
   border-radius: 15px;
   box-shadow: var(--lightblue) 0px 13px 27px -5px,
     var(--darkblue) 0px 8px 16px -8px;
   margin: 10px 0;
+}
+
+.cache {
+  display: none;
 }
 
 /*////////////////////////////////////*/
@@ -221,7 +226,7 @@ footer {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  z-index: 100;
+  z-index: 10;
 
   #footer-content {
     display: flex;
@@ -257,10 +262,18 @@ footer {
 }
 
 /*////////////////////////////////////*/
+/*/////////////// HOME ///////////////*/
+/*////////////////////////////////////*/
+
+#connectStatusHome {
+  margin-bottom: 20px;
+}
+
+/*////////////////////////////////////*/
 /*/////////// LIST TOPICS ////////////*/
 /*////////////////////////////////////*/
 #createTopicForm {
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -291,6 +304,11 @@ footer {
     padding: 5px 10px;
     border-radius: 10px;
   }
+}
+
+.content-bubble i {
+  position: absolute;
+  left: -50px;
 }
 
 /*////////////////////////////////////*/
