@@ -1,11 +1,16 @@
 <?php
+
+use App\Session;
+
     $category = $result["data"]['category']; 
     $topics = $result["data"]['topics']; 
 ?>
 
 <h1>Liste des topics de <?= mb_strtoupper($category->getName()) ?></h1>
 
-<a href="#"> <button class="addButton">Créer un nouveau topic</button></a>
+<?php if(Session::getUser()) { ?>
+
+<button class="addButton">Créer un nouveau topic</button>
 
 <form action="#" id="createTopicForm" method="post">
 
@@ -21,21 +26,22 @@
   <input type="submit" value="créer le topic" class="submitButton">
 
 </form>
+<?php }
 
-<?php if(!empty($topics)) {
+if(!empty($topics)) {
 
-$openTopics = [];
-$closedTopics = [];
+  $openTopics = [];
+  $closedTopics = [];
 
-foreach($topics as $topic) {
+  foreach($topics as $topic) {
 
-  // On tire les topics ouverts et fermés
-  if($topic->getClosed() === 1) {
-    $closedTopics[] = $topic;
-  } else {
-    $openTopics[] = $topic;
-  }
-  ?>
+    // On tire les topics ouverts et fermés
+    if($topic->getClosed() === 1) {
+      $closedTopics[] = $topic;
+    } else {
+      $openTopics[] = $topic;
+    }
+    ?>
 <?php } ?>
 
 <!-- On affiche les topics ouverts -->
@@ -45,11 +51,17 @@ foreach($topics as $topic) {
   <div class="listContents">
     <?php foreach($openTopics as $topic) { ?>
 
+
+
     <div class="content-bubble">
+      <?php if(Session::getUser() && Session::isAdmin()) { ?>
+      <i class="fa-solid fa-circle-xmark"></i>
+      <?php }?>
       <h3><a href="index.php?ctrl=forum&action=topicContent&id=<?= $topic->getId() ?>"><?= $topic ?></a></h3>
 
-      <p class="topicInfos"><?= $topic->getUser() ?>, le <?= $topic->getCreationDate() ?></p>
-
+      <p class="topicInfos">
+        <?= $topic->getUser() ?>, le <?= $topic->getCreationDate() ?>
+      </p>
     </div>
 
     <?php } ?>
