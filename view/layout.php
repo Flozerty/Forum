@@ -1,4 +1,7 @@
 <?php
+
+use App\Session;
+
 if(isset($result["data"]['categories'])) {
   $categories = $result["data"]['categories']; 
 }
@@ -49,7 +52,7 @@ if(isset($result["data"]['categories'])) {
             </a>
           </div>
 
-          <?php if(App\Session::isAdmin()) { ?>
+          <?php if(Session::isAdmin()) { ?>
           <a href="index.php?ctrl=home&action=users">Voir la liste des gens</a>
           <?php } ?>
 
@@ -61,7 +64,7 @@ if(isset($result["data"]['categories'])) {
           <div id="nav-right">
 
             <!-- si l'utilisateur est connecté  -->
-            <?php if(App\Session::getUser()){ ?>
+            <?php if(Session::getUser()){ ?>
 
             <a href="index.php?ctrl=security&action=profile"><span
                 class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>

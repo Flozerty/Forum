@@ -160,10 +160,7 @@ class SecurityController extends AbstractController{
         //////////////////////////////////////////////
   public function logout () {
     $_SESSION["user"] = null;
-    return [
-      "view" => VIEW_DIR."index.php",
-      "meta_description" => "Page d'accueil'"
-    ];
+    AbstractController::redirectTo($ctrl = "home", $action = "index", $id = null);
   }
   
 }

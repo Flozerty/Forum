@@ -1,17 +1,24 @@
 <?php
+
+use App\Session;
+
   $popularTopics = $result["data"]['popularTopics']; 
   $lastTopics = $result["data"]['lastTopics']; 
 ?>
 
-<h1>BIENVENUE SUR FORUM, le forum</h1>
+<h1>BIENVENUE SUR FORUM (le forum)</h1>
+
+<div id="connectStatusHome">
+  <?php if(Session::getUser()) { ?>
+  <p>Bonjour <?= Session::getUser() ?>,</p>
+  <?php } else { ?>
+  <a href="index.php?ctrl=security&action=register">Inscription</a>
+  <a href="index.php?ctrl=security&action=login">Connexion</a>
+  <?php } ?>
+</div>
 
 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit ut nemo quia voluptas numquam, itaque ipsa soluta
   ratione eum temporibus aliquid, facere rerum in laborum debitis labore aliquam ullam cumque.</p>
-
-<p>
-  <a href="index.php?ctrl=security&action=login">Se connecter</a>
-  <a href="index.php?ctrl=security&action=register">S'inscrire</a>
-</p>
 
 <hr>
 
