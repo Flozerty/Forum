@@ -84,4 +84,33 @@ class ForumController extends AbstractController implements ControllerInterface 
       ]
     ];
   }
+
+  public function addTopic($idCategory) {
+    $topicManager = new TopicManager();
+
+    $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $intro = filter_input(INPUT_POST, "newtopicIntro", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+    $userId = Session::getUser()->getId();
+
+    $topicManager->add([
+      "title" => $title,
+      "intro" => $intro,
+      "category_id" => $idCategory,
+      "user_id" => $userId
+    ]);
+    AbstractController::redirectTo($ctrl = "forum", $action = "listTopicsByCategory", $id = $idCategory);
+  }
+  public function createCategory() {
+    $categoryManager = new CategoryManager();
+
+    $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $icone = filter_input(INPUT_POST, "icone", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+    $categoryManager->add([
+      "name" => $name,
+      "icone" => $icone
+    ]);
+    AbstractController::redirectTo($ctrl = "forum", $action = "listCategories");
+  }
 }

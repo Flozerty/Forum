@@ -1,8 +1,8 @@
-const createTopicForm = document.querySelector('#createTopicForm');
+const createForm = document.querySelector('#createForm');
 const addButton = document.querySelectorAll('.addButton');
 
 addButton.forEach(button => {
   button.addEventListener("click", () => {
-    createTopicForm.style.display = "flex"
+    createForm.style.display = "flex"
   })
 })

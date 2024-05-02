@@ -12,19 +12,18 @@ use App\Session;
 
 <button class="addButton">Créer un nouveau topic</button>
 
-<form action="#" id="createTopicForm" method="post">
+<form action="index.php?ctrl=forum&action=addTopic&id=<?= $category->getId() ?>" id="createForm" method="post">
 
   <legend>Créer un nouveau topic</legend>
 
   <div id="formTopicTitle">
     <label for="title"></label>
-    <input type="text" id="title" name="title" placeholder="Titre du topic">
+    <input type="text" id="title" name="title" placeholder="Titre du topic" required>
   </div>
 
-  <textarea id="newtopicIntro" rows="5" cols="40" name="newtopicIntro"
-    placeholder="ajoutez une introduction au topic"></textarea>
+  <textarea id="newtopicIntro" rows="5" cols="40" name="newtopicIntro" placeholder="ajoutez une introduction au topic"
+    required></textarea>
   <input type="submit" value="créer le topic" class="submitButton">
-
 </form>
 <?php }
 

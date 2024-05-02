@@ -18,7 +18,7 @@ class TopicManager extends Manager {
   public function findTopicsByCategory($id) {
 
     $sql = "
-    SELECT * 
+    SELECT *, DATE_FORMAT(creationDate, '%d/%m/%Y') AS creationDate
     FROM ".$this->tableName." t 
     WHERE t.category_id = :id";
 
