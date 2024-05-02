@@ -66,7 +66,7 @@ class TopicManager extends Manager {
     SELECT id_topic, title, pseudo AS user, DATE_FORMAT(creationDate, '%d/%m/%Y') AS creationDate
     FROM $this->tableName
     INNER JOIN user ON user.id_user = topic.user_id
-    ORDER BY creationDate DESC
+    ORDER BY topic.creationDate DESC
     LIMIT 5
     ";
 
