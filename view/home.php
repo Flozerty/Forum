@@ -44,12 +44,32 @@ use App\Session;
   <article class="lastTopic content-bubble">
     <div class="topicInfos">
       <p class="topicTitle"><?= $topic->getTitle() ?></p>
-      <p class="topicUser">par <?= $topic->getUser() ?> le ( => il y a) <?= $topic->getCreationDate() ?></p>
+      <p class="topicUser">
+        par <?= $topic->getUser() ?>,
+        il y a
+        <?php 
+        $dateCreation = $topic->getCreationDate();
+        $timeDiff = time()-strtotime($dateCreation);
+        switch (true){
+          case($timeDiff <60):
+            echo "$timeDiff secondes";break;
+          case($timeDiff<3600):
+            $minutes = round($timeDiff / 60);
+            echo "$minutes minutes";break;
+          case($timeDiff<3600*24):
+            $hours = round($timeDiff / 3600);
+            echo "$hours heures"; break;
+          default:
+          $jours = round($timeDiff / (3600*24));
+            echo "$jours jours";break;
+        }
+        ?>
+
+      </p>
     </div>
     <p class="topicIntro"><?= $topic->getIntro() ?></p>
   </article>
   <?php } ?>
-
 </section>
 
 <hr>
