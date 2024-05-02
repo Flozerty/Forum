@@ -55,7 +55,7 @@ if(!empty($topics)) {
 
     <div class="content-bubble">
       <?php if(Session::getUser() && Session::isAdmin()) { ?>
-      <i class="fa-solid fa-circle-xmark"></i>
+      <i class="fa-solid fa-circle-xmark left-mark"></i>
       <?php }?>
       <h3><a href="index.php?ctrl=forum&action=topicContent&id=<?= $topic->getId() ?>"><?= $topic ?></a></h3>
 
@@ -76,6 +76,9 @@ if(!empty($topics)) {
     <?php foreach($closedTopics as $topic) { ?>
 
     <div class="content-bubble">
+      <?php if(Session::getUser() && Session::isAdmin()) { ?>
+      <i class="fa-solid fa-circle-xmark left-mark"></i>
+      <?php }?>
       <h3><a href="index.php?ctrl=forum&action=topicContent&id=<?= $topic->getId() ?>"><?= $topic ?></a></h3>
 
       <p class="topicInfos"><?= $topic->getUser() ?>, le <?= $topic->getCreationDate() ?></p>

@@ -56,6 +56,18 @@ section {
   margin: 10px 0;
 }
 
+.content-bubble i {
+  position: absolute;
+}
+
+.left-mark {
+  left: -50px;
+}
+
+.right-mark {
+  right: -50px;
+}
+
 .cache {
   display: none;
 }
@@ -306,11 +318,6 @@ footer {
   }
 }
 
-.content-bubble i {
-  position: absolute;
-  left: -50px;
-}
-
 /*////////////////////////////////////*/
 /*////////// TOPIC CONTENT ///////////*/
 /*////////////////////////////////////*/
@@ -337,11 +344,17 @@ footer {
   .othersPost {
     align-self: flex-start;
 
+    i {
+      left: -50px;
+    }
   }
 
   .myPost {
     align-self: flex-end;
 
+    i {
+      right: -50px;
+    }
   }
 }
 
