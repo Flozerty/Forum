@@ -12,6 +12,10 @@ define('PUBLIC_DIR', "public/");
 define('DEFAULT_CTRL', 'Home');
 define('ADMIN_MAIL', "admin@gmail.com");
 
+// heure locale française pour time()
+date_default_timezone_set('Europe/Paris');
+
+
 require("app/Autoloader.php");
 
 Autoloader::register();
