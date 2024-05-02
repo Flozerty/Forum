@@ -143,7 +143,7 @@ class SecurityController extends AbstractController{
       $_SESSION["user"] = $user;
       return [
         "view" => VIEW_DIR."index.php",
-        "meta_description" => "Page d'accueil'"
+        "meta_description" => "Page d'accueil"
       ];
 
       // S'il n'y a aucun formulaire a traiter (on arrive seulement sur la page)
