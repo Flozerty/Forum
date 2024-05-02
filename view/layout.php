@@ -1,11 +1,17 @@
 <?php
+$activePage = filter_input(INPUT_GET, "action", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
 use App\Session;
 
 if(isset($result["data"]['categories'])) {
   $categories = $result["data"]['categories']; 
 }
-  $activePage = filter_input(INPUT_GET, "action", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+if(isset($result["data"]['activesAllTime'])) {
+  $activesAllTime = $result["data"]['activesAllTime']; 
+}
+if(isset($result["data"]['activesWeek'])) {
+  $activesWeek = $result["data"]['activesWeek']; 
+}
 ?>
 
 <!DOCTYPE html>
@@ -21,6 +27,11 @@ if(isset($result["data"]['categories'])) {
     referrerpolicy="origin"></script> -->
 
   <script src="https://kit.fontawesome.com/7252ea4d54.js" crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap"
+    rel="stylesheet">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
     integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
@@ -87,7 +98,7 @@ if(isset($result["data"]['categories'])) {
         <!-------------------------------------------->
 
         <!-- sauf quand login / register -->
-        <?php if($activePage != "login" && $activePage != "register" && $activePage != "traitement") { ?>
+        <?php if($activePage != "login" && $activePage != "register") { ?>
 
         <div id="sideNav-left">
           <nav>
@@ -107,7 +118,7 @@ if(isset($result["data"]['categories'])) {
                   <?php foreach($categories as $category) { ?>
                   <li class="nav-link">
                     <a href="index.php?ctrl=forum&action=listTopicsByCategory&id=<?= $category->getId() ?>">
-                      <div id="categoryIcone"><?= $category->getIcone() ?></div>
+                      <span id="categoryIcone"><?= $category->getIcone() ?></span>
                       <?= $category->getName() ?>
                     </a>
                   </li>
@@ -119,9 +130,24 @@ if(isset($result["data"]['categories'])) {
           </nav>
 
           <!-- Activité de la communauté -->
-          <div id="community-activity">activity</div>
-        </div>
+          <section id="community-activity">
+            <div id="activesAllTime">
 
+              <p class="activesTitle"><b>Actifs depuis toujours :</b></p>
+
+              <?php foreach($activesAllTime as $active) {
+                echo "<p>".$active->getPseudo()." :<span>".$active->getNbPosts()."</span></p>";
+              }?>
+            </div>
+            <div id="activesWeek">
+              <p class="activesTitle"><b>Cette semaine :</b></p>
+
+              <?php foreach($activesWeek as $active) {
+                echo "<p>".$active->getPseudo()." :<span>".$active->getNbPosts()."</span></p>";
+              }?>
+            </div>
+          </section>
+        </div>
         <?php } ?>
 
         <div id="main-wrapper">
@@ -134,7 +160,7 @@ if(isset($result["data"]['categories'])) {
         <!-------------------------------------------->
 
         <!-- sauf quand login / register -->
-        <?php if($activePage != "login" && $activePage != "register" && $activePage != "traitement") { ?>
+        <?php if($activePage != "login" && $activePage != "register") { ?>
 
         <aside id="layout-aside">
           <div id="myActives">

@@ -11,6 +11,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Cabin", sans-serif;
 }
 
 a {
@@ -195,13 +196,33 @@ main {
   }
 
   #community-activity {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     width: 80%;
-    height: 100px;
     background-color: var(--lightblue);
+    margin: 0;
+
+    div {
+      width: 100%;
+      margin: 10px 0;
+      text-align: center;
+    }
+
+    p {
+      width: 80%;
+      position: relative;
+      margin-left: 15px;
+      text-align: left;
+
+      span {
+        position: absolute;
+        right: 0;
+      }
+    }
+
+    .activesTitle {
+      width: 100%;
+      text-align: center;
+      margin: 0 auto 5px auto;
+    }
   }
 }
 
@@ -334,9 +355,15 @@ footer {
   height: 40px;
   display: flex;
   align-items: center;
+  border: 1px solid var(--bluemid);
+  margin: 10px 0;
 
   a {
-    padding-left: 50px;
+    margin-left: 30%;
+  }
+
+  i {
+    padding-left: 10px;
   }
 }
 

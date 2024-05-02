@@ -13,9 +13,13 @@ class HomeController extends AbstractController implements ControllerInterface {
   public function index() {
     $topicManager = new TopicManager();
     $categoryManager = new CategoryManager();
+    $userManager = new UserManager();
     $categories = $categoryManager->findAll();
     $popularTopics = $topicManager->popularTopics();
     $lastTopics = $topicManager->lastTopics();
+
+    $activesAllTime = $userManager->activesAllTime();
+    $activesWeek = $userManager->activesWeek();
 
     return [
       "view" => VIEW_DIR."home.php",
@@ -24,6 +28,8 @@ class HomeController extends AbstractController implements ControllerInterface {
         "categories" => $categories,
         "popularTopics"=> $popularTopics,
         "lastTopics" => $lastTopics,
+        "activesAllTime"=> $activesAllTime,
+        "activesWeek"=> $activesWeek,
       ]
     ];
   }

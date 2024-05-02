@@ -14,11 +14,11 @@ class ForumController extends AbstractController implements ControllerInterface 
 
   public function index() {
     $categoryManager = new CategoryManager();
-    $postManager = new PostManager();
+    $userManager = new UserManager();
     $categories = $categoryManager->findAll();
 
-    $activesAllTime = $postManager->activesAllTime();
-    $activesWeek = $postManager->activesWeek();
+    $activesAllTime = $userManager->activesAllTime();
+    $activesWeek = $userManager->activesWeek();
     return [
       "view" => VIEW_DIR."home.php",
       "meta_description" => "Page d'accueil du forum",
@@ -32,27 +32,37 @@ class ForumController extends AbstractController implements ControllerInterface 
 
   public function listCategories() {
 
+    $userManager = new UserManager();
     $categoryManager = new CategoryManager();
     $categories = $categoryManager->findAll();
     $listCategories = $categoryManager->findAll(["name"]);
 
+    $activesAllTime = $userManager->activesAllTime();
+    $activesWeek = $userManager->activesWeek();
     return [
       "view" => VIEW_DIR."forum/listCategories.php",
       "meta_description" => "Liste des catégories : ",
       "data" => [
         "categories" => $categories,
-        "listCategories" => $listCategories
+        "listCategories" => $listCategories,
+        "activesAllTime"=> $activesAllTime,
+        "activesWeek"=> $activesWeek,
       ]
     ];
   }
 
+
+
   public function listTopicsByCategory($id) {
 
     $topicManager = new TopicManager();
+    $userManager = new UserManager();
     $categoryManager = new CategoryManager();
     $categories = $categoryManager->findAll();
     $category = $categoryManager->findOneById($id);
     $topics = $topicManager->findTopicsByCategory($id);
+    $activesAllTime = $userManager->activesAllTime();
+    $activesWeek = $userManager->activesWeek();
 
     return [
       "view" => VIEW_DIR."forum/listTopics.php",
@@ -60,13 +70,16 @@ class ForumController extends AbstractController implements ControllerInterface 
       "data" => [
         "categories" => $categories,
         "category" => $category,
-        "topics" => $topics
+        "topics" => $topics,
+        "activesAllTime"=> $activesAllTime,
+        "activesWeek"=> $activesWeek,
       ]
     ];
   }
 
   public function topicContent($id) {
 
+    $userManager = new UserManager();
     $topicManager = new TopicManager();
     $categoryManager = new CategoryManager();
     $postManager = new PostManager();
@@ -74,13 +87,17 @@ class ForumController extends AbstractController implements ControllerInterface 
     $topic = $topicManager->findOneById($id);
     $posts = $postManager->findPostsByTopic($id);
 
+    $activesAllTime = $userManager->activesAllTime();
+    $activesWeek = $userManager->activesWeek();
     return [
       "view" => VIEW_DIR."forum/topicContent.php",
       "meta_description" => $topic,
       "data" => [
         "categories" => $categories,
         "topic" => $topic,
-        "posts" => $posts
+        "posts" => $posts,
+        "activesAllTime"=> $activesAllTime,
+        "activesWeek"=> $activesWeek,
       ]
     ];
   }

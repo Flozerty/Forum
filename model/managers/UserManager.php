@@ -37,4 +37,31 @@ class UserManager extends Manager{
       $this->className
     );
   }
+
+  public function activesWeek() {
+    $sql= "
+    SELECT id_user, user.pseudo, COUNT(*) AS nbPosts
+    FROM $this->tableName
+    INNER JOIN post ON post.user_id = user.id_user
+    GROUP BY id_user
+    ORDER BY nbPosts DESC 
+    LIMIT 5
+    ";
+    return $this->getMultipleResults(
+      DAO::select($sql), 
+      $this->className);
+  }
+  public function activesAllTime() {
+    $sql= "
+    SELECT id_user, user.pseudo, COUNT(*) AS nbPosts
+    FROM $this->tableName
+    INNER JOIN post ON post.user_id = user.id_user
+    GROUP BY id_user
+    ORDER BY nbPosts DESC 
+    LIMIT 5
+    ";
+    return $this->getMultipleResults(
+      DAO::select($sql), 
+      $this->className);
+  }
 }

@@ -27,12 +27,5 @@ class PostManager extends Manager{
     );
   }
 
-  public function activesAllTime() {
-    return"";
-  }
 
-  public function activesWeek() {
-    return"";
-
-  }
 }
