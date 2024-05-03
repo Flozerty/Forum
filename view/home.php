@@ -26,11 +26,12 @@ use App\Session;
   <h2>Les topics populaires</h2>
 
   <?php foreach ($popularTopics as $topic) { ?>
-  <div class="popularTopic content-bubble">
+  <a href="index.php?ctrl=forum&action=topicContent&id=<?= $topic->getId() ?>" class="popularTopic content-bubble">
+
     <p class="topicTitle"><?= $topic->getTitle() ?></p>
     <p class="topicPosts"><?= $topic->getNbPosts() ?> posts</p>
     <p class="topicInfos"><?= $topic->getUser() ?>, le <?= $topic->getCreationDate() ?></p>
-  </div>
+  </a>
   <?php } ?>
 
 </section>
@@ -41,7 +42,8 @@ use App\Session;
   <h2>Les dernières créations</h2>
 
   <?php foreach ($lastTopics as $topic) { ?>
-  <article class="lastTopic content-bubble">
+  <a href="index.php?ctrl=forum&action=topicContent&id=<?= $topic->getId() ?>" class="lastTopic content-bubble">
+
     <div class="topicInfos">
       <p class="topicTitle"><?= $topic->getTitle() ?></p>
       <p class="topicUser">
@@ -56,7 +58,8 @@ use App\Session;
       </p>
     </div>
     <p class="topicIntro"><?= $topic->getIntro() ?></p>
-  </article>
+
+  </a>
   <?php } ?>
 </section>
 
