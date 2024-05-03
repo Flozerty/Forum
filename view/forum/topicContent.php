@@ -48,7 +48,9 @@ use App\Session;
 
 </section>
 
+<hr>
+
 <form action="#" method="post" id="newPostForm">
-  <textarea id="newPost" name="newPost" cols="50" rows="10" placeholder="ajoutez un commentaire"></textarea>
+  <textarea id="newPost" name="newPost" cols="50" rows="10" placeholder="ajoutez une réponse"></textarea>
   <input type="submit" value="envoyer" class="submitButton">
 </form>

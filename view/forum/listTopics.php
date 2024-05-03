@@ -25,6 +25,9 @@ use App\Session;
     required></textarea>
   <input type="submit" value="créer le topic" class="submitButton">
 </form>
+
+<hr>
+
 <?php }
 
 if(!empty($topics)) {
@@ -50,22 +53,22 @@ if(!empty($topics)) {
   <div class="listContents">
     <?php foreach($openTopics as $topic) { ?>
 
-
-
-    <div class="content-bubble">
+    <a href="index.php?ctrl=forum&action=topicContent&id=<?= $topic->getId() ?>" class="content-bubble">
       <?php if(Session::getUser() && Session::isAdmin()) { ?>
       <i class="fa-solid fa-circle-xmark left-mark"></i>
       <?php }?>
-      <h3><a href="index.php?ctrl=forum&action=topicContent&id=<?= $topic->getId() ?>"><?= $topic ?></a></h3>
+      <h3><?= $topic ?></h3>
 
       <p class="topicInfos">
         <?= $topic->getUser() ?>, le <?= $topic->getCreationDate() ?>
       </p>
-    </div>
+    </a>
 
     <?php } ?>
   </div>
 </section>
+
+<hr>
 
 <!-- On affiche les topics fermés -->
 <section id="closedTopics">
@@ -74,14 +77,16 @@ if(!empty($topics)) {
   <div class="listContents">
     <?php foreach($closedTopics as $topic) { ?>
 
-    <div class="content-bubble">
+    <a href="index.php?ctrl=forum&action=topicContent&id=<?= $topic->getId() ?>" class="content-bubble">
       <?php if(Session::getUser() && Session::isAdmin()) { ?>
       <i class="fa-solid fa-circle-xmark left-mark"></i>
       <?php }?>
-      <h3><a href="index.php?ctrl=forum&action=topicContent&id=<?= $topic->getId() ?>"><?= $topic ?></a></h3>
+      <h3><?= $topic ?></h3>
 
-      <p class="topicInfos"><?= $topic->getUser() ?>, le <?= $topic->getCreationDate() ?></p>
-    </div>
+      <p class="topicInfos">
+        <?= $topic->getUser() ?>, le <?= $topic->getCreationDate() ?>
+      </p>
+    </a>
 
     <?php } ?>
   </div>
