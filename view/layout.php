@@ -12,6 +12,9 @@ if(isset($result["data"]['activesAllTime'])) {
 if(isset($result["data"]['activesWeek'])) {
   $activesWeek = $result["data"]['activesWeek']; 
 }
+if(isset($result["data"]['myActivesTopics'])) {
+  $myActivesTopics = $result["data"]['myActivesTopics']; 
+}
 ?>
 
 <!DOCTYPE html>
@@ -163,14 +166,29 @@ if(isset($result["data"]['activesWeek'])) {
         <?php if($activePage != "login" && $activePage != "register") { ?>
 
         <aside id="layout-aside">
+
+          <?php 
+          if(isset($myActivesTopics)) { 
+            ?>
+
           <div id="myActives">
             <p>Mes discussions actives :</p>
-            
+            <?php foreach($myActivesTopics as $topic) { ?>
+
+            <?= $topic->getId() ?>
+
+            <?php } ?>
           </div>
+          <?php } ?>
+
           aside
+
           <div id="poll">Poll</div>
+
         </aside>
-        <?php } ?>
+        <?php 
+      } 
+      ?>
       </main>
     </div>
 
