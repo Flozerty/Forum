@@ -3,6 +3,7 @@ namespace Controller;
 
 use App\AbstractController;
 use App\ControllerInterface;
+use App\Session;
 use Model\Managers\CategoryManager;
 use Model\Managers\PostManager;
 use Model\Managers\TopicManager;
@@ -20,8 +21,9 @@ class HomeController extends AbstractController implements ControllerInterface {
 
     $activesAllTime = $userManager->activesAllTime();
     $activesWeek = $userManager->activesWeek();
-    $myActivesTopics = $userManager->myActivesTopics();
 
+    $myActivesTopics = (Session::getUser() ? $userManager->myActivesTopics() : null);
+    
     return [
       "view" => VIEW_DIR."home.php",
       "meta_description" => "Page d'accueil du forum",

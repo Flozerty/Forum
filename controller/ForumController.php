@@ -19,6 +19,9 @@ class ForumController extends AbstractController implements ControllerInterface 
 
     $activesAllTime = $userManager->activesAllTime();
     $activesWeek = $userManager->activesWeek();
+
+    $myActivesTopics = (Session::getUser() ? $userManager->myActivesTopics() : null);
+
     return [
       "view" => VIEW_DIR."home.php",
       "meta_description" => "Page d'accueil du forum",
@@ -26,6 +29,7 @@ class ForumController extends AbstractController implements ControllerInterface 
         "categories" => $categories,
         "activesAllTime"=> $activesAllTime,
         "activesWeek"=> $activesWeek,
+        "myActivesTopics"=> $myActivesTopics,
       ]
     ];
   }
@@ -39,6 +43,9 @@ class ForumController extends AbstractController implements ControllerInterface 
 
     $activesAllTime = $userManager->activesAllTime();
     $activesWeek = $userManager->activesWeek();
+
+    $myActivesTopics = (Session::getUser() ? $userManager->myActivesTopics() : null);
+
     return [
       "view" => VIEW_DIR."forum/listCategories.php",
       "meta_description" => "Liste des catégories : ",
@@ -47,6 +54,7 @@ class ForumController extends AbstractController implements ControllerInterface 
         "listCategories" => $listCategories,
         "activesAllTime"=> $activesAllTime,
         "activesWeek"=> $activesWeek,
+        "myActivesTopics"=> $myActivesTopics,
       ]
     ];
   }
@@ -61,8 +69,11 @@ class ForumController extends AbstractController implements ControllerInterface 
     $categories = $categoryManager->findAll();
     $category = $categoryManager->findOneById($id);
     $topics = $topicManager->findTopicsByCategory($id);
+
     $activesAllTime = $userManager->activesAllTime();
     $activesWeek = $userManager->activesWeek();
+
+    $myActivesTopics = (Session::getUser() ? $userManager->myActivesTopics() : null);
 
     return [
       "view" => VIEW_DIR."forum/listTopics.php",
@@ -73,6 +84,7 @@ class ForumController extends AbstractController implements ControllerInterface 
         "topics" => $topics,
         "activesAllTime"=> $activesAllTime,
         "activesWeek"=> $activesWeek,
+        "myActivesTopics"=> $myActivesTopics,
       ]
     ];
   }
@@ -89,6 +101,9 @@ class ForumController extends AbstractController implements ControllerInterface 
 
     $activesAllTime = $userManager->activesAllTime();
     $activesWeek = $userManager->activesWeek();
+
+    $myActivesTopics = (Session::getUser() ? $userManager->myActivesTopics() : null);
+
     return [
       "view" => VIEW_DIR."forum/topicContent.php",
       "meta_description" => $topic,
@@ -98,6 +113,7 @@ class ForumController extends AbstractController implements ControllerInterface 
         "posts" => $posts,
         "activesAllTime"=> $activesAllTime,
         "activesWeek"=> $activesWeek,
+        "myActivesTopics"=> $myActivesTopics,
       ]
     ];
   }
