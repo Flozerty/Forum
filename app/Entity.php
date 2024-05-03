@@ -36,4 +36,22 @@ abstract class Entity{
   public function getClass(){
   return get_class($this);
   }
+
+  // Fonction qui renvoie le délai depuis une date donnée.
+  public function getTimeDelay($date){
+    $timeDiff = time()-strtotime($date);
+        switch (true){
+          case($timeDiff <60):
+            echo "$timeDiff secondes";break;
+          case($timeDiff<3600):
+            $minutes = round($timeDiff / 60);
+            echo "$minutes minutes";break;
+          case($timeDiff<3600*24):
+            $hours = round($timeDiff / 3600);
+            echo "$hours heures"; break;
+          default:
+          $jours = round($timeDiff / (3600*24));
+            echo "$jours jours";break;
+        }
+  }
 }

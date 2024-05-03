@@ -20,7 +20,13 @@ use App\Session;
   <div class="topic-post <?= (Session::getUser() == $post->getUser()) ? "myPost" : "othersPost" ?>">
     <div class="postInfos">
       <p><?= $post->getUser() ?></p>
-      <p>il y a <?= $post->getPostDate() ?></p>
+      <p>il y a
+        <!-- On utilise la fonction de timerDelay créée dans Entity.php -->
+        <?php 
+        $date = $post->getPostDate();
+        $post->getTimeDelay($date)
+        ?>
+      </p>
     </div>
 
     <div class="content-bubble">

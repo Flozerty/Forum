@@ -164,7 +164,8 @@ if(isset($result["data"]['activesWeek'])) {
 
         <aside id="layout-aside">
           <div id="myActives">
-            My actives
+            <p>Mes discussions actives :</p>
+            
           </div>
           aside
           <div id="poll">Poll</div>
