@@ -118,7 +118,7 @@ if(isset($result["data"]['myTopics'])) {
 
               <!-- Liste des catégories -->
               <div id="categoriesListContainer">
-                <div id="hrBar"></div>
+                <div class="hrBar"></div>
                 <ul id="nav-links">
 
                   <?php foreach($categories as $category) { ?>
@@ -177,11 +177,20 @@ if(isset($result["data"]['myTopics'])) {
 
           <div id="myTopics">
             <p>Mes sujets :</p>
-            <?php foreach($myTopics as $topic) { ?>
+            <div class="myTopicsList">
+              <div class="hrBar"></div>
+              <ul>
 
-            <?= $topic->getId() ?>
+                <?php foreach($myTopics as $topic) { ?>
+                <li class="nav-link">
+                  <a href="index.php?ctrl=forum&action=topicContent&id=<?= $topic->getId() ?>">
+                    <?= $topic->getTitle() ?>
+                  </a>
+                </li>
+                <?php } ?>
 
-            <?php } ?>
+              </ul>
+            </div>
           </div>
           <?php } ?>
 
@@ -192,12 +201,20 @@ if(isset($result["data"]['myTopics'])) {
 
           <div id="myActives">
             <p>Mes discussions actives :</p>
+            <div class="myTopicsList">
+              <div class="hrBar"></div>
+              <ul>
 
-            <?php foreach($myActivesTopics as $topic) { ?>
+                <?php foreach($myActivesTopics as $topic) { ?>
+                <li class="nav-link">
+                  <a href="index.php?ctrl=forum&action=topicContent&id=<?= $topic->getId() ?>">
+                    <?= $topic->getTitle() ?>
+                  </a>
+                </li>
+                <?php } ?>
 
-            <?= $topic->getTitle() ?>
-
-            <?php } ?>
+              </ul>
+            </div>
           </div>
           <?php } ?>
 
