@@ -120,8 +120,7 @@ class TopicManager extends Manager {
       $sql= "
       SELECT *
       FROM $this->tableName
-      INNER JOIN user ON topic.user_id = user.id_user
-      WHERE topic.user_id = :id
+      WHERE user_id = :id
       ";
       return $this->getMultipleResults(
         DAO::select($sql, ['id' => $id]), 
