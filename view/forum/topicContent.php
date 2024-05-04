@@ -10,6 +10,8 @@ use App\Session;
 <h1><?= $topic ?></h1>
 <p><?= $topic->getIntro() ?></p>
 
+<hr>
+
 <section id="posts-container">
 
   <!-- S'il y a déjà des messages dans le topic -->
@@ -50,7 +52,19 @@ use App\Session;
 
 <hr>
 
+<?php if(!$topic->getClosed()) { ?>
+<?php if(Session::getUser()) { ?>
+
+
 <form action="#" method="post" id="newPostForm">
   <textarea id="newPost" name="newPost" cols="50" rows="10" placeholder="ajoutez une réponse"></textarea>
   <input type="submit" value="envoyer" class="submitButton">
 </form>
+
+<?php } else { ?>
+<p>connectez-vous pour répondre</p>
+
+<?php } 
+} else { ?>
+<p>sujet cloturé</p>
+<?php } ?>
