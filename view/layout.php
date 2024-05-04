@@ -124,7 +124,7 @@ if(isset($result["data"]['myTopics'])) {
                   <?php foreach($categories as $category) { ?>
                   <li class="nav-link">
                     <a href="index.php?ctrl=forum&action=listTopicsByCategory&id=<?= $category->getId() ?>">
-                      <span id="categoryIcone"><?= $category->getIcone() ?></span>
+                      <span class="categoryIcone"><?= $category->getIcone() ?></span>
                       <?= $category->getName() ?>
                     </a>
                   </li>
@@ -192,16 +192,16 @@ if(isset($result["data"]['myTopics'])) {
 
           <div id="myActives">
             <p>Mes discussions actives :</p>
+
             <?php foreach($myActivesTopics as $topic) { ?>
 
-            <?= $topic->getId() ?>
+            <?= $topic->getTitle() ?>
 
             <?php } ?>
           </div>
           <?php } ?>
 
-          aside
-
+          <!-- Question de la semaine -->
           <div id="poll">Poll</div>
 
         </aside>

@@ -196,7 +196,7 @@ main {
       }
     }
 
-    #categoryIcone {
+    .categoryIcone {
       width: 35px;
       text-align: end;
       padding-right: 10px;

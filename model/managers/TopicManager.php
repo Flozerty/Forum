@@ -3,6 +3,7 @@ namespace Model\Managers;
 
 use App\Manager;
 use App\DAO;
+use App\Session;
 
 class TopicManager extends Manager {
 
@@ -89,4 +90,43 @@ class TopicManager extends Manager {
     // WHERE
     // " ;
   }
+
+    // return les topics actifs de l'user connecté
+    public function myActivesTopics() {
+
+      // je peux utiliser Session ici?
+      $user = Session::getUser();
+      $id = $user->getId();
+  
+      $sql= "
+      SELECT pseudo, title, id_topic, intro, post.user_id, category_id
+      FROM $this->tableName
+      INNER JOIN user ON topic.user_id = user.id_user
+      INNER JOIN post ON post.user_id = user.id_user
+      
+      WHERE post.user_id = :id
+      GROUP BY id_topic
+      ";
+      return $this->getMultipleResults(
+        DAO::select($sql, ['id' => $id]), 
+        $this->className);
+    }
+  
+     // return les topics de l'user connecté
+     public function myTopics() {
+  
+      // je peux utiliser Session ici?
+      $user = Session::getUser();
+      $id = $user->getId();
+  
+      $sql= "
+      SELECT *
+      FROM $this->tableName
+      INNER JOIN user ON topic.user_id = user.id_user
+      WHERE topic.user_id = :id
+      ";
+      return $this->getMultipleResults(
+        DAO::select($sql, ['id' => $id]), 
+        $this->className);
+    }
 }
