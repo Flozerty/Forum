@@ -99,11 +99,9 @@ class TopicManager extends Manager {
       $id = $user->getId();
   
       $sql= "
-      SELECT pseudo, title, id_topic, intro, post.user_id, category_id
+      SELECT title, id_topic, intro, post.user_id, category_id
       FROM $this->tableName
-      INNER JOIN user ON topic.user_id = user.id_user
-      INNER JOIN post ON post.user_id = user.id_user
-      
+      INNER JOIN post ON post.topic_id = topic.id_topic 
       WHERE post.user_id = :id
       GROUP BY id_topic
       ";
