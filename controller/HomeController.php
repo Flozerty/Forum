@@ -23,6 +23,7 @@ class HomeController extends AbstractController implements ControllerInterface {
     $activesWeek = $userManager->activesWeek();
 
     $myActivesTopics = (Session::getUser() ? $userManager->myActivesTopics() : null);
+    $myTopics = (Session::getUser() ? $userManager->myTopics() : null);
     
     return [
       "view" => VIEW_DIR."home.php",
@@ -34,6 +35,7 @@ class HomeController extends AbstractController implements ControllerInterface {
         "activesAllTime"=> $activesAllTime,
         "activesWeek"=> $activesWeek,
         "myActivesTopics" => $myActivesTopics,
+        "myTopics"=> $myTopics,
       ]
     ];
   }

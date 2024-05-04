@@ -93,4 +93,22 @@ class UserManager extends Manager{
       DAO::select($sql, ['id' => $id]), 
       $this->className);
   }
+
+   // return les topics de l'user connecté
+   public function myTopics() {
+
+    // je peux utiliser Session ici?
+    $user = Session::getUser();
+    $id = $user->getId();
+
+    $sql= "
+    SELECT *
+    FROM $this->tableName
+    INNER JOIN topic ON topic.user_id = user.id_user
+    WHERE topic.user_id = :id
+    ";
+    return $this->getMultipleResults(
+      DAO::select($sql, ['id' => $id]), 
+      $this->className);
+  }
 }

@@ -15,6 +15,9 @@ if(isset($result["data"]['activesWeek'])) {
 if(isset($result["data"]['myActivesTopics'])) {
   $myActivesTopics = $result["data"]['myActivesTopics']; 
 }
+if(isset($result["data"]['myTopics'])) {
+  $myTopics = $result["data"]['myTopics']; 
+}
 ?>
 
 <!DOCTYPE html>
@@ -167,6 +170,22 @@ if(isset($result["data"]['myActivesTopics'])) {
 
         <aside id="layout-aside">
 
+          <!-- Les topics de l'user -->
+          <?php 
+          if(isset($myTopics)) { 
+            ?>
+
+          <div id="myTopics">
+            <p>Mes sujets :</p>
+            <?php foreach($myTopics as $topic) { ?>
+
+            <?= $topic->getId() ?>
+
+            <?php } ?>
+          </div>
+          <?php } ?>
+
+          <!-- Les topics où l'user participe -->
           <?php 
           if(isset($myActivesTopics)) { 
             ?>
