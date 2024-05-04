@@ -59,7 +59,9 @@ section {
   margin: 10px 0;
 }
 
-.content-bubble i {
+.fa-circle-xmark {
+  color: red;
+  font-size: 1.5rem;
   position: absolute;
 }
 
@@ -73,11 +75,6 @@ section {
 
 .cache {
   display: none;
-}
-
-.fa-circle-xmark {
-  color: red;
-  font-size: 1.5rem;
 }
 
 hr {
@@ -331,6 +328,10 @@ footer {
   .topicInfos {
     display: flex;
     justify-content: space-between;
+  }
+
+  i {
+    margin-right: 20px;
   }
 }
 

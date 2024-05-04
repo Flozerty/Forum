@@ -28,7 +28,7 @@ use App\Session;
   <?php foreach ($popularTopics as $topic) { ?>
   <a href="index.php?ctrl=forum&action=topicContent&id=<?= $topic->getId() ?>" class="popularTopic content-bubble">
 
-    <p class="topicTitle"><?= $topic->getTitle() ?></p>
+    <p class="topicTitle"><?= $topic->getCategory()->getIcone()." ".$topic->getTitle() ?></p>
     <p class="topicPosts"><?= $topic->getNbPosts() ?> posts</p>
     <p class="topicInfos"><?= $topic->getUser() ?>, le <?= $topic->getCreationDate() ?></p>
   </a>
@@ -45,7 +45,7 @@ use App\Session;
   <a href="index.php?ctrl=forum&action=topicContent&id=<?= $topic->getId() ?>" class="lastTopic content-bubble">
 
     <div class="topicInfos">
-      <p class="topicTitle"><?= $topic->getTitle() ?></p>
+      <p class="topicTitle"><?= $topic->getCategory()->getIcone()." ".$topic->getTitle() ?></p>
       <p class="topicUser">
         par <?= $topic->getUser() ?>,
         il y a

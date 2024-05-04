@@ -42,13 +42,15 @@ class TopicManager extends Manager {
     );
   }
 
+  // renvoie les 5  topics avec la plus grande participation.
   public function popularTopics() {
  
     $sql = "
-    SELECT id_topic, title, pseudo AS user, DATE_FORMAT(creationDate, '%d/%m/%Y') AS creationDate, COUNT(post.topic_id) AS nbPosts
+    SELECT id_topic, title, category_id, pseudo AS user, DATE_FORMAT(creationDate, '%d/%m/%Y') AS creationDate, COUNT(post.topic_id) AS nbPosts
     FROM $this->tableName
     LEFT JOIN post ON post.topic_id = topic.id_topic
     INNER JOIN user ON user.id_user = topic.user_id
+    INNER JOIN category ON category.id_category = topic.category_id
     GROUP BY topic.id_topic
     ORDER BY nbPosts DESC
     LIMIT 5
@@ -60,10 +62,11 @@ class TopicManager extends Manager {
     );
   }
 
+  // renvoie les 5 derniers topics créés.
   public function lastTopics() {
  
     $sql = "
-    SELECT *, pseudo AS user
+    SELECT id_topic, title, category_id, intro, creationDate, pseudo AS user
     FROM $this->tableName
     INNER JOIN user ON user.id_user = topic.user_id
     ORDER BY topic.creationDate DESC
