@@ -94,9 +94,16 @@ hr {
 }
 
 .message {
-  position: absolute;
-  top: 8vh;
+  position: fixed;
+  text-align: center;
+  padding: 10px;
+  bottom: 20%;
+  left: 35%;
+  right: 35%;
   z-index: 5;
+  border-radius: 50px;
+  border: 1px solid;
+  background-color: var(--white);
 }
 
 /*////////////////////////////////////*/

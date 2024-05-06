@@ -326,6 +326,7 @@ if(isset($result["data"]['myTopics'])) {
   </script>
   <script src="<?= PUBLIC_DIR ?>/js/createForm.js"></script>
   <script src="<?= PUBLIC_DIR ?>/js/userPanel.js"></script>
+  <script src="<?= PUBLIC_DIR ?>/js/notif.js"></script>
 </body>
 
 </html>
