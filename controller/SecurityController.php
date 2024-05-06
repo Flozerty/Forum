@@ -70,7 +70,6 @@ class SecurityController extends AbstractController{
       }
 
       // Si tout est bon, on envoie
-
       $password = password_hash($pass1, PASSWORD_DEFAULT);
       
       $message = "<p class='addNotif'>Votre compte a été créé, vous pouvez maintenant vous connecter.</p>";
@@ -82,6 +81,8 @@ class SecurityController extends AbstractController{
       ];
       
       $userManager->add($newUser);
+    Session::addFlash("success","compte créé avce succès");
+
       return [
         "view" => VIEW_DIR."login.php",
         "meta_description" => "Page de connexion au forum",
@@ -122,6 +123,7 @@ class SecurityController extends AbstractController{
       // S'il manque un input
       if (!($pseudo && $password)) {
         $message = "<p class='alertNotif'>Merci de renseigner vos identifiants :)</p>";
+        Session::addFlash("error","trololol");
         return redirectAndMessage($message);
       }
 
@@ -131,6 +133,7 @@ class SecurityController extends AbstractController{
       // S'il ne trouve pas le pseudo
       if(!$user) {
         $message = "<p class='alertNotif'>Pseudo ou mot de passe incorrect. Veuillez réessayer.</p>";
+        Session::addFlash("error","vérifiez vos identifiants");
         return redirectAndMessage($message);
       }
 
@@ -138,12 +141,15 @@ class SecurityController extends AbstractController{
       
       // Si le mot de passe est faux
         if(!password_verify($password, $hach)) {
+        Session::addFlash("error","vérifiez vos identifiants");
         $message = "<p class='alertNotif'>Pseudo ou mot de passe incorrect. Veuillez réessayer.</p>";
         return redirectAndMessage($message);
       }
       
       // // Si tout est bon, on connecte l'user + redirect Home
       Session::setUser($user);
+    Session::addFlash("success","bonjour ".Session::getUser());
+
       AbstractController::redirectTo($ctrl = "home", $action = "index", $id = null);
 
       // S'il n'y a aucun formulaire a traiter (on arrive seulement sur la page)
@@ -159,6 +165,7 @@ class SecurityController extends AbstractController{
         /////////////////// LOGOUT ///////////////////
         //////////////////////////////////////////////
   public function logout () {
+    Session::addFlash("error","au revoir ".Session::getUser());
     $_SESSION["user"] = null;
     AbstractController::redirectTo($ctrl = "home", $action = "index", $id = null);
   }
