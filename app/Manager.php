@@ -81,6 +81,16 @@ abstract class Manager{
     return DAO::delete($sql, ['id' => $id]); 
   }
 
+  public function remove($id){
+    $sql = "
+    UPDATE ".$this->tableName."
+    SET deleted = 1
+    WHERE id_".$this->tableName." = :id
+    ";
+
+    return DAO::delete($sql, ['id' => $id]); 
+  }
+
   private function generate($rows, $class){
     foreach($rows as $row){
       yield new $class($row);

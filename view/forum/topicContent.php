@@ -19,7 +19,15 @@ use App\Session;
   foreach($posts as $post) { ?>
 
   <!-- post a droite si user connecté -->
-  <div class="topic-post <?= (Session::getUser() == $post->getUser()) ? "myPost" : "othersPost" ?>">
+  <div
+    class="topic-post <?= $post->getDeleted() ? "delPostContainer" : null ?> <?= (Session::getUser() == $post->getUser()) ? "myPost" : "othersPost" ?>">
+
+    <!-- on n'affiche pas le message supprimé -->
+    <?php if($post->getDeleted()) { ?>
+    <p class="delPost">Message supprimé</p>
+
+    <?php } else { ?>
+
     <div class="postInfos">
       <p><?= $post->getUser() ?></p>
       <p>il y a
@@ -34,12 +42,17 @@ use App\Session;
     <div class="content-bubble">
       <!-- x-mark si user connecté ou admin -->
       <?php if(Session::getUser() == $post->getUser() || Session::isAdmin() == $post->getUser()) { ?>
-      <i class="fa-solid fa-circle-xmark"></i>
+
+      <a href="index.php?ctrl=forum&action=removePost&id=<?= $post->getId() ?>,<?= $topic->getId() ?>">
+        <i class="fa-solid fa-circle-xmark"></i>
+      </a>
       <?php } ?>
       <p>
         <?= $post ?>
       </p>
     </div>
+    <?php } ?>
+
   </div>
 
   <?php }

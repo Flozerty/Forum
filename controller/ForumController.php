@@ -176,4 +176,15 @@ class ForumController extends AbstractController implements ControllerInterface 
     ]);
     AbstractController::redirectTo($ctrl = "forum", $action = "topicContent", $id = $idTopic);
   }
+
+  public function removePost($ids) {
+
+    $idsTable = explode(",", $ids);
+    $idPost = $idsTable[0];
+    $idTopic = $idsTable[1];
+
+    $postManager = new PostManager();
+    $postManager->remove($idPost);
+    AbstractController::redirectTo($ctrl = "forum", $action = "topicContent", $id = $idTopic);
+  }
 }

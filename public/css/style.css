@@ -394,7 +394,7 @@ footer {
   flex-direction: column;
 
   .topic-post {
-    margin-top: 25px;
+    margin: 25px 0;
     width: 70%;
     display: flex;
     flex-direction: column;
@@ -423,6 +423,16 @@ footer {
       right: -50px;
     }
   }
+
+  .delPostContainer {
+    align-self: center;
+  }
+}
+
+.delPost {
+  background-color: var(--white);
+  padding: 10px 25%;
+  align-self: center;
 }
 
 #newPostForm {

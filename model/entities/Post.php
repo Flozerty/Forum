@@ -8,6 +8,7 @@ final class Post extends Entity {
   private $messageContent;
   private $user;
   private $topic;
+  private $deleted;
 
   public function __construct($data) {
     $this->hydrate($data);
@@ -59,9 +60,19 @@ final class Post extends Entity {
     $this->postDate = $postDate;
     return $this;
   }
+  public function getDeleted()
+  {
+    return $this->deleted;
+  }
+  public function setDeleted($deleted)
+  {
+    $this->deleted = $deleted;
+    return $this;
+  }
   ///////////////////////////////////////////
 
   public function __toString(){
     return $this->messageContent;
   }
+
 }
