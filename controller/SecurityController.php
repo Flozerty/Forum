@@ -17,7 +17,7 @@ class SecurityController extends AbstractController{
         //////////////////////////////////////////////
   public function register () {
 
-    if($_POST["submit"]) {
+    if(isset($_POST["submit"])) {
 
       $userManager = new UserManager();
 
@@ -31,7 +31,7 @@ class SecurityController extends AbstractController{
         return [
           "view" => VIEW_DIR."register.php",
           "meta_description" => "Page de création de compte",
-          "data" => ["message" => $message]
+          "data" => ["loginMessage" => $message]
         ];
       }
 
@@ -101,7 +101,7 @@ class SecurityController extends AbstractController{
         /////////// TRAITEMENT D'UN LOGIN ////////////
         //////////////////////////////////////////////
   public function login () {
-    if($_POST["submit"]) {
+    if(isset($_POST["submit"])) {
 
       $userManager = new UserManager();
 
@@ -113,12 +113,12 @@ class SecurityController extends AbstractController{
         return [
           "view" => VIEW_DIR."login.php",
           "meta_description" => "Page de création de compte",
-          "data" => ["message" => $message]
+          "data" => ["loginMessage" => $message]
         ];
       }
 
       // on vérifie que tout est correct à l'envoi
-      
+
       // S'il manque un input
       if (!($pseudo && $password)) {
         $message = "<p class='alertNotif'>Merci de renseigner vos identifiants :)</p>";
@@ -127,17 +127,18 @@ class SecurityController extends AbstractController{
 
       // On vérifie que le pseudo existe et que les mots de passe correspondent
       $user = $userManager->findUserByPseudo($pseudo);
-      $hach = $user->getPassword();
 
       // S'il ne trouve pas le pseudo
       if(!$user) {
-        $message = "<p class='alertNotif'>Pseudo ou  de passe incorrect. Veuillez réessayer.</p>";
+        $message = "<p class='alertNotif'>Pseudo ou mot de passe incorrect. Veuillez réessayer.</p>";
         return redirectAndMessage($message);
       }
 
+      $hach = $user->getPassword();
+      
       // Si le mot de passe est faux
         if(!password_verify($password, $hach)) {
-        $message = "<p class='alertNotif'> ou mot de passe incorrect. Veuillez réessayer.</p>";
+        $message = "<p class='alertNotif'>Pseudo ou mot de passe incorrect. Veuillez réessayer.</p>";
         return redirectAndMessage($message);
       }
       
@@ -149,7 +150,7 @@ class SecurityController extends AbstractController{
     } else {
       return [
         "view" => VIEW_DIR."login.php",
-        "meta_description" => "Page de connexion"
+        "meta_description" => "Page de connexion",
       ];
     }
   }

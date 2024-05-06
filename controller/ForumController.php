@@ -12,12 +12,14 @@ use Model\Managers\UserManager;
 
 class ForumController extends AbstractController implements ControllerInterface {
 
+
+
   public function index() {
-    $categoryManager = new CategoryManager();
+
     $userManager = new UserManager();
+    $categoryManager = new CategoryManager();
     $topicManager = new TopicManager();
     $categories = $categoryManager->findAll();
-
     $activesAllTime = $userManager->activesAllTime();
     $activesWeek = $userManager->activesWeek();
 

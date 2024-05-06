@@ -1,6 +1,6 @@
 <?php 
-if(isset($result["data"]['message'])) {
-  $message = $result["data"]['message'];
+if(isset($result["data"]['loginMessage'])) {
+  $message = $result["data"]['loginMessage'];
 }
 ?>
 
