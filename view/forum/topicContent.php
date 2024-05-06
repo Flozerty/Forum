@@ -55,14 +55,13 @@ use App\Session;
 <?php if(!$topic->getClosed()) { ?>
 <?php if(Session::getUser()) { ?>
 
-
-<form action="#" method="post" id="newPostForm">
+<form action="index.php?ctrl=forum&action=addPost&id=<?= $topic->getId() ?>" method="post" id="newPostForm">
   <textarea id="newPost" name="newPost" cols="50" rows="10" placeholder="ajoutez une réponse"></textarea>
   <input type="submit" value="envoyer" class="submitButton">
 </form>
 
 <?php } else { ?>
-<p>connectez-vous pour répondre</p>
+<p>connectez-vous pour pouvoir répondre</p>
 
 <?php } 
 } else { ?>

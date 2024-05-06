@@ -37,6 +37,7 @@ class ForumController extends AbstractController implements ControllerInterface 
     ];
   }
 
+  // afficher les catégories
   public function listCategories() {
 
     $userManager = new UserManager();
@@ -65,8 +66,7 @@ class ForumController extends AbstractController implements ControllerInterface 
     ];
   }
 
-
-
+  // afficher la liste des topics d'une catégorie
   public function listTopicsByCategory($id) {
 
     $topicManager = new TopicManager();
@@ -97,6 +97,7 @@ class ForumController extends AbstractController implements ControllerInterface 
     ];
   }
 
+  // afficher les posts d'un topic
   public function topicContent($id) {
 
     $userManager = new UserManager();
@@ -128,6 +129,7 @@ class ForumController extends AbstractController implements ControllerInterface 
     ];
   }
 
+  // Ajouter un topic dans une catégorie.
   public function addTopic($idCategory) {
     $topicManager = new TopicManager();
 
@@ -144,6 +146,8 @@ class ForumController extends AbstractController implements ControllerInterface 
     ]);
     AbstractController::redirectTo($ctrl = "forum", $action = "listTopicsByCategory", $id = $idCategory);
   }
+
+  // ajouter une nouvelle catégorie
   public function addCategory() {
     $categoryManager = new CategoryManager();
 
@@ -155,5 +159,21 @@ class ForumController extends AbstractController implements ControllerInterface 
       "icone" => $icone
     ]);
     AbstractController::redirectTo($ctrl = "forum", $action = "listCategories");
+  }
+
+  // ajouter un post dans un topic
+  public function addPost($idTopic) {
+    $postManager = new PostManager();
+    $messageContent = filter_input(INPUT_POST, "newPost", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    
+    $idUser = Session::getUser()->getId();
+    var_dump($idUser);
+    
+    $postManager->add([
+      "messageContent" => $messageContent,
+      "topic_id" => $idTopic,
+      "user_id" => $idUser
+    ]);
+    AbstractController::redirectTo($ctrl = "forum", $action = "topicContent", $id = $idTopic);
   }
 }
