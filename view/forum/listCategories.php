@@ -27,8 +27,7 @@ use App\Session;
 
 <!-- liste des catégories -->
 <section id="allCategories-container">
-  <?php
-foreach($listCategories as $category ){ ?>
+  <?php foreach($listCategories as $category ){ ?>
 
   <div class="categoryDiv">
     <?php if(Session::getUser() && Session::isAdmin()) { ?>

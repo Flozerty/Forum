@@ -93,7 +93,7 @@ if(isset($result["data"]['myTopics'])) {
             <ul id="headerNavList">
               <li class="link"><a href="index.php?ctrl=security&action=logout">Déconnexion</a></li>
               <li class="link"><a href="index.php">Messagerie</a></li>
-              <li class="link"><a href="index.php">Mes informations</a></li>
+              <li class="link"><a href="index.php?ctrl=forum&action=myInfos">Mes informations</a></li>
               <li class="link"><a href="index.php">Mode sombre</a></li>
 
               <!-- ++ si l'utilisateur est admin -->
@@ -327,6 +327,7 @@ if(isset($result["data"]['myTopics'])) {
   <script src="<?= PUBLIC_DIR ?>/js/createForm.js"></script>
   <script src="<?= PUBLIC_DIR ?>/js/userPanel.js"></script>
   <script src="<?= PUBLIC_DIR ?>/js/notif.js"></script>
+  <script src="<?= PUBLIC_DIR ?>/js/myInfos.js"></script>
 </body>
 
 </html>

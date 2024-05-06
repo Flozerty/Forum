@@ -131,6 +131,31 @@ class ForumController extends AbstractController implements ControllerInterface 
     ];
   }
 
+  public function myInfos() {
+    $topicManager = new TopicManager();
+    $userManager = new UserManager();
+    $categoryManager = new CategoryManager();
+    $categories = $categoryManager->findAll();
+
+    $activesAllTime = $userManager->activesAllTime();
+    $activesWeek = $userManager->activesWeek();
+
+    $myActivesTopics = (Session::getUser() ? $topicManager->myActivesTopics() : null);
+    $myTopics = (Session::getUser() ? $topicManager->myTopics(Session::getUser()->getId()) : null);
+
+    return [
+      "view" => VIEW_DIR."forum/myInformations.php",
+      "meta_description" => "Mes infos :",
+      "data" => [
+        "categories" => $categories,
+        "activesAllTime"=> $activesAllTime,
+        "activesWeek"=> $activesWeek,
+        "myActivesTopics"=> $myActivesTopics,
+        "myTopics"=> $myTopics,
+      ]
+    ];
+  }
+
   // Ajouter un topic dans une catégorie.
   public function addTopic($idCategory) {
     $topicManager = new TopicManager();
@@ -208,7 +233,7 @@ class ForumController extends AbstractController implements ControllerInterface 
     AbstractController::redirectTo($ctrl = "forum", $action = "topicContent", $id = $idTopic);
   }
 
-  // remove category
+  // supprimer une categorie
   public function removeCategory($id) {
     $categoryManager = new CategoryManager();
     $categoryManager->delete($id);

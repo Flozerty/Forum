@@ -594,5 +594,46 @@ footer {
 }
 
 /*////////////////////////////////////*/
-/*//////////// CONNEXION /////////////*/
+/*///////// MES INFORMATIONS /////////*/
 /*////////////////////////////////////*/
+#myInfos {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+
+  p {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+  }
+
+  form {
+    margin: 25px 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #emailInfos input {
+    align-self: flex-end;
+  }
+
+  span {
+    align-self: flex-end;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  section {
+    align-items: flex-start;
+  }
+
+  a {
+    padding: 5px 15px;
+    align-self: center;
+  }
+}
