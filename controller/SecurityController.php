@@ -3,6 +3,7 @@ namespace Controller;
 
 use App\AbstractController;
 use App\ControllerInterface;
+use App\Session;
 use Model\Managers\CategoryManager;
 use Model\Managers\TopicManager;
 use Model\Managers\UserManager;
@@ -139,12 +140,10 @@ class SecurityController extends AbstractController{
         $message = "<p class='alertNotif'> ou mot de passe incorrect. Veuillez réessayer.</p>";
         return redirectAndMessage($message);
       }
-
       
       // // Si tout est bon, on connecte l'user + redirect Home
-      $_SESSION["user"] = $user;
+      Session::setUser($user);
       AbstractController::redirectTo($ctrl = "home", $action = "index", $id = null);
-
 
       // S'il n'y a aucun formulaire a traiter (on arrive seulement sur la page)
     } else {
