@@ -111,11 +111,10 @@ class TopicManager extends Manager {
   }
 
     // return les topics de l'user connecté
-    public function myTopics() {
+    public function myTopics($id) {
 
     // je peux utiliser Session ici?
-    $user = Session::getUser();
-    $id = $user->getId();
+
 
     $sql= "
     SELECT *

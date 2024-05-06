@@ -22,7 +22,7 @@ class ForumController extends AbstractController implements ControllerInterface 
     $activesWeek = $userManager->activesWeek();
 
     $myActivesTopics = (Session::getUser() ? $topicManager->myActivesTopics() : null);
-    $myTopics = (Session::getUser() ? $topicManager->myTopics() : null);
+    $myTopics = (Session::getUser() ? $topicManager->myTopics(Session::getUser()->getId()) : null);
 
     return [
       "view" => VIEW_DIR."home.php",
@@ -50,7 +50,7 @@ class ForumController extends AbstractController implements ControllerInterface 
     $activesWeek = $userManager->activesWeek();
 
     $myActivesTopics = (Session::getUser() ? $topicManager->myActivesTopics() : null);
-    $myTopics = (Session::getUser() ? $topicManager->myTopics() : null);
+    $myTopics = (Session::getUser() ? $topicManager->myTopics(Session::getUser()->getId()) : null);
 
     return [
       "view" => VIEW_DIR."forum/listCategories.php",
@@ -80,7 +80,7 @@ class ForumController extends AbstractController implements ControllerInterface 
     $activesWeek = $userManager->activesWeek();
 
     $myActivesTopics = (Session::getUser() ? $topicManager->myActivesTopics() : null);
-    $myTopics = (Session::getUser() ? $topicManager->myTopics() : null);
+    $myTopics = (Session::getUser() ? $topicManager->myTopics(Session::getUser()->getId()) : null);
 
     return [
       "view" => VIEW_DIR."forum/listTopics.php",
@@ -112,7 +112,7 @@ class ForumController extends AbstractController implements ControllerInterface 
     $activesWeek = $userManager->activesWeek();
 
     $myActivesTopics = (Session::getUser() ? $topicManager->myActivesTopics() : null);
-    $myTopics = (Session::getUser() ? $topicManager->myTopics() : null);
+    $myTopics = (Session::getUser() ? $topicManager->myTopics(Session::getUser()->getId()) : null);
 
     return [
       "view" => VIEW_DIR."forum/topicContent.php",
@@ -144,6 +144,8 @@ class ForumController extends AbstractController implements ControllerInterface 
       "category_id" => $idCategory,
       "user_id" => $userId
     ]);
+
+    Session::addFlash("success","nouveau topic créé");
     AbstractController::redirectTo($ctrl = "forum", $action = "listTopicsByCategory", $id = $idCategory);
   }
 
@@ -158,6 +160,8 @@ class ForumController extends AbstractController implements ControllerInterface 
       "name" => $name,
       "icone" => $icone
     ]);
+    
+    Session::addFlash("success","Catégorie ajoutée");
     AbstractController::redirectTo($ctrl = "forum", $action = "listCategories");
   }
 
@@ -174,6 +178,8 @@ class ForumController extends AbstractController implements ControllerInterface 
       "topic_id" => $idTopic,
       "user_id" => $idUser
     ]);
+
+    Session::addFlash("success","post envoyé");
     AbstractController::redirectTo($ctrl = "forum", $action = "topicContent", $id = $idTopic);
   }
 
@@ -186,6 +192,8 @@ class ForumController extends AbstractController implements ControllerInterface 
 
     $postManager = new PostManager();
     $postManager->remove($idPost);
+
+    Session::addFlash("error","post retiré");
     AbstractController::redirectTo($ctrl = "forum", $action = "topicContent", $id = $idTopic);
   }
 
@@ -193,6 +201,17 @@ class ForumController extends AbstractController implements ControllerInterface 
   public function closeTopic($idTopic) {
     $topicManager = new TopicManager();
     $topicManager->closeTopic($idTopic);
+
+    Session::addFlash("error","topic fermé");
     AbstractController::redirectTo($ctrl = "forum", $action = "topicContent", $id = $idTopic);
+  }
+
+  // remove category
+  public function removeCategory($id) {
+    $categoryManager = new CategoryManager();
+    $categoryManager->delete($id);
+
+    Session::addFlash("error","catégorie supprimée");
+    AbstractController::redirectTo($ctrl = "forum", $action = "listCategories", $id);
   }
 }

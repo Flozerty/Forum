@@ -86,6 +86,19 @@ hr {
   width: 80%;
 }
 
+.link {
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.message {
+  position: absolute;
+  top: 8vh;
+  z-index: 5;
+}
+
 /*////////////////////////////////////*/
 /*////////////// HEADER //////////////*/
 /*////////////////////////////////////*/
@@ -161,7 +174,6 @@ header {
     i {
       color: white;
       margin-left: 15px;
-      cursor: pointer;
       transition: 0.3s;
     }
 
@@ -183,12 +195,18 @@ header {
     }
   }
 
+  #userContainer {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+  }
+
   #headerNavList {
     display: flex;
     flex-direction: column;
     position: absolute;
     background-color: var(--white);
-    top: -300%;
+    top: -400%;
     right: 0;
     padding: 10px;
     width: 150%;
@@ -404,7 +422,6 @@ footer {
 
 .popularTopic .topicPosts {
   position: absolute;
-  display: inline-block;
   left: 45%;
 }
 
@@ -438,8 +455,14 @@ footer {
   border: 1px solid var(--bluemid);
   margin: 10px 0;
 
-  a {
+  p {
     margin-left: 30%;
+  }
+
+  a {
+    height: 100%;
+    display: flex;
+    align-items: center;
   }
 
   i {

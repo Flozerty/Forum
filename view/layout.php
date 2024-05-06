@@ -80,27 +80,28 @@ if(isset($result["data"]['myTopics'])) {
             <?php if(Session::getUser()){ ?>
 
             <!-- profil -->
-            <a href="index.php?ctrl=security&action=profile">
+            <div id=userContainer>
               <figure id="userFigureContainer">
                 <img src="<?= PUBLIC_DIR."img/".App\Session::getUser()->getAvatar() ?>"
                   alt="avatar de <?= App\Session::getUser()?>">
                 <figcaption><?= App\Session::getUser()?></figcaption>
               </figure>
-            </a>
-            <i id="userPanelShow" class="fa-solid fa-caret-down"></i>
+              <i id="userPanelShow" class="fa-solid fa-caret-down"></i>
+            </div>
 
             <!-- fonctionnalités connecté -->
             <ul id="headerNavList">
-              <li><a href="index.php?ctrl=security&action=logout">Déconnexion</a></li>
-              <li><a href="index.php">Messagerie</a></li>
-              <li><a href="index.php">Mes informations</a></li>
-              <li><a href="index.php">Mode sombre</a></li>
+              <li class="link"><a href="index.php?ctrl=security&action=logout">Déconnexion</a></li>
+              <li class="link"><a href="index.php">Messagerie</a></li>
+              <li class="link"><a href="index.php">Mes informations</a></li>
+              <li class="link"><a href="index.php">Mode sombre</a></li>
 
               <!-- ++ si l'utilisateur est admin -->
 
               <?php if(Session::isAdmin()) { ?>
-              <li><a href="index.php?ctrl=home&action=users">Voir la liste des gens</a></li>
-              <li><a href="index.php?ctrl=forum&action=listCategories">Voir la liste des catégories</a></li>
+              <li class="link"><a href="index.php?ctrl=home&action=users">Voir la liste des gens</a></li>
+              <li class="link"><a href="index.php?ctrl=forum&action=listCategories">Voir la liste des catégories</a>
+              </li>
               <?php } ?>
 
             </ul>
@@ -127,7 +128,7 @@ if(isset($result["data"]['myTopics'])) {
 
         <div id="sideNav-left">
           <nav>
-            <p>
+            <p class="link">
               <a href="index.php">Accueil</a>
             </p>
             <div id="sideBar-categories">
@@ -144,7 +145,7 @@ if(isset($result["data"]['myTopics'])) {
                   <li class="nav-link">
                     <a href="index.php?ctrl=forum&action=listTopicsByCategory&id=<?= $category->getId() ?>">
                       <span class="categoryIcone"><?= $category->getIcone() ?></span>
-                      <?= $category->getName() ?>
+                      <p class="link"><?= $category->getName() ?></p>
                     </a>
                   </li>
                   <?php } ?>
@@ -201,7 +202,7 @@ if(isset($result["data"]['myTopics'])) {
               <ul>
 
                 <?php foreach($myTopics as $topic) { ?>
-                <li class="nav-link">
+                <li class="nav-link link">
                   <a href="index.php?ctrl=forum&action=topicContent&id=<?= $topic->getId() ?>">
                     <?= $topic->getTitle() ?>
                   </a>
@@ -225,7 +226,7 @@ if(isset($result["data"]['myTopics'])) {
               <ul>
 
                 <?php foreach($myActivesTopics as $topic) { ?>
-                <li class="nav-link">
+                <li class="nav-link link">
                   <a href="index.php?ctrl=forum&action=topicContent&id=<?= $topic->getId() ?>">
                     <?= $topic->getTitle() ?>
                   </a>
@@ -292,7 +293,7 @@ if(isset($result["data"]['myTopics'])) {
     </footer>
   </div>
 
-  <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
   </script>
   <script>
@@ -322,7 +323,7 @@ if(isset($result["data"]['myTopics'])) {
       content_css: '//www.tiny.cloud/css/codepen.min.css'
     });
   })
-  </script> -->
+  </script>
   <script src="<?= PUBLIC_DIR ?>/js/createForm.js"></script>
   <script src="<?= PUBLIC_DIR ?>/js/userPanel.js"></script>
 </body>
