@@ -109,8 +109,8 @@ if(isset($result["data"]['myTopics'])) {
             <!-- si l'utilisateur n'est pas connecté -->
             <?php } else { ?>
 
-            <a href="index.php?ctrl=security&action=register">Inscription</a>
-            <a href="index.php?ctrl=security&action=login">Connexion</a>
+            <p><a href="index.php?ctrl=security&action=register">Inscription</a></p>
+            <p><a href="index.php?ctrl=security&action=login">Connexion</a></p>
 
             <?php } ?>
           </div>
