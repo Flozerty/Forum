@@ -105,6 +105,18 @@ header {
     padding: 0 2vw;
   }
 
+  #logo-container {
+    img {
+      height: 4vh;
+      padding-right: 10px;
+    }
+
+    figure {
+      display: flex;
+      align-items: center;
+    }
+  }
+
   #search {
     max-width: 500px;
     width: 45%;
@@ -127,23 +139,64 @@ header {
     }
   }
 
+  figcaption {
+    color: white;
+  }
+
   a {
     color: white;
   }
 
-  #logo-container {
-    img {
-      height: 4vh;
-      padding-right: 10px;
+
+
+  #nav-right {
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    i {
+      color: white;
+      margin-left: 15px;
+      cursor: pointer
     }
 
     figure {
       display: flex;
+      flex-direction: row-reverse;
       align-items: center;
-    }
+      height: 6vh;
 
-    figcaption {
-      color: white;
+      img {
+        height: 100%;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+
+      figcaption {
+        margin-right: 15px;
+      }
+    }
+  }
+
+  #headerNavList {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: var(--white);
+    top: 150%;
+    right: 0;
+    padding: 10px;
+    width: 150%;
+    text-align: center;
+    z-index: 4;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 8px 24px;
+
+    li {
+      margin: 7px 0;
+
+      a {
+        color: var(--darkblue);
+      }
     }
   }
 }
@@ -264,7 +317,6 @@ main {
   width: 250px;
   background-color: var(--lightblue);
 }
-
 
 /*////////////////////////////////////*/
 /*////////////// FOOTER //////////////*/

@@ -69,10 +69,6 @@ if(isset($result["data"]['myTopics'])) {
             </a>
           </div>
 
-          <?php if(Session::isAdmin()) { ?>
-          <a href="index.php?ctrl=home&action=users">Voir la liste des gens</a>
-          <?php } ?>
-
           <div id="search">
             <img src="public/img/wenSearch.png" alt="image loupe de la barre de recherche">
             <input type="search" placeholder="recherchez un topic, une catégorie">
@@ -83,10 +79,33 @@ if(isset($result["data"]['myTopics'])) {
             <!-- si l'utilisateur est connecté  -->
             <?php if(Session::getUser()){ ?>
 
-            <a href="index.php?ctrl=security&action=profile"><span
-                class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
-            <a href="index.php?ctrl=security&action=logout">Déconnexion</a>
+            <!-- profil -->
+            <a href="index.php?ctrl=security&action=profile">
+              <figure id="userFigureContainer">
+                <img src="<?= PUBLIC_DIR."img/".App\Session::getUser()->getAvatar() ?>"
+                  alt="avatar de <?= App\Session::getUser()?>">
+                <figcaption><?= App\Session::getUser()?></figcaption>
+              </figure>
+            </a>
+            <i id="userPanelShow" class="fa-solid fa-caret-down"></i>
 
+            <!-- fonctionnalités connecté -->
+            <ul id="headerNavList">
+              <li><a href="index.php?ctrl=security&action=logout">Déconnexion</a></li>
+              <li><a href="index.php">Messagerie</a></li>
+              <li><a href="index.php">Mes informations</a></li>
+              <li><a href="index.php">Mode sombre</a></li>
+
+              <!-- ++ si l'utilisateur est admin -->
+
+              <?php if(Session::isAdmin()) { ?>
+              <li><a href="index.php?ctrl=home&action=users">Voir la liste des gens</a></li>
+              <li><a href="index.php?ctrl=forum&action=listCategories">Voir la liste des catégories</a></li>
+              <?php } ?>
+
+            </ul>
+
+            <!-- si l'utilisateur n'est pas connecté -->
             <?php } else { ?>
 
             <a href="index.php?ctrl=security&action=register">Inscription</a>
@@ -113,7 +132,7 @@ if(isset($result["data"]['myTopics'])) {
             </p>
             <div id="sideBar-categories">
               <p>
-                <a href="index.php?ctrl=forum&action=listCategories">THÉMATIQUES :</a>
+                THÉMATIQUES :
               </p>
 
               <!-- Liste des catégories -->
@@ -304,7 +323,8 @@ if(isset($result["data"]['myTopics'])) {
     });
   })
   </script> -->
-  <script src="<?= PUBLIC_DIR ?>/js/script.js"></script>
+  <script src="<?= PUBLIC_DIR ?>/js/createForm.js"></script>
+  <script src="<?= PUBLIC_DIR ?>/js/userPanel.js"></script>
 </body>
 
 </html>

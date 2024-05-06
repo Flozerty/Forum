@@ -6,7 +6,7 @@ use App\Session;
   $lastTopics = $result["data"]['lastTopics']; 
 ?>
 
-<h1>BIENVENUE SUR FORUM (le forum)</h1>
+<h1>BIENVENUE SUR FORUM (LE forum)</h1>
 
 <div id="connectStatusHome">
   <?php if(Session::getUser()) { ?>
