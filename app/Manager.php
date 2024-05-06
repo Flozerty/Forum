@@ -88,7 +88,7 @@ abstract class Manager{
     WHERE id_".$this->tableName." = :id
     ";
 
-    return DAO::delete($sql, ['id' => $id]); 
+    return DAO::update($sql, ['id' => $id]); 
   }
 
   private function generate($rows, $class){

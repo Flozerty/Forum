@@ -177,6 +177,7 @@ class ForumController extends AbstractController implements ControllerInterface 
     AbstractController::redirectTo($ctrl = "forum", $action = "topicContent", $id = $idTopic);
   }
 
+  // supprimer le post d'un topic
   public function removePost($ids) {
 
     $idsTable = explode(",", $ids);
@@ -185,6 +186,13 @@ class ForumController extends AbstractController implements ControllerInterface 
 
     $postManager = new PostManager();
     $postManager->remove($idPost);
+    AbstractController::redirectTo($ctrl = "forum", $action = "topicContent", $id = $idTopic);
+  }
+
+  // fermer un topic
+  public function closeTopic($idTopic) {
+    $topicManager = new TopicManager();
+    $topicManager->closeTopic($idTopic);
     AbstractController::redirectTo($ctrl = "forum", $action = "topicContent", $id = $idTopic);
   }
 }

@@ -12,6 +12,15 @@ use App\Session;
 
 <hr>
 
+<?php if(
+  (Session::getUser() == $topic->getUser() || Session::isAdmin() == $topic->getUser())
+  && !$topic->getClosed()
+  ) { ?>
+<a href="index.php?ctrl=forum&action=closeTopic&id=<?= $topic->getId() ?>">
+  <button>fermer le topic</button>
+</a>
+<?php } ?>
+
 <section id="posts-container">
 
   <!-- S'il y a déjà des messages dans le topic -->

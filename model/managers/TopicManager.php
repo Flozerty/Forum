@@ -91,39 +91,48 @@ class TopicManager extends Manager {
     // " ;
   }
 
-    // return les topics actifs de l'user connecté
-    public function myActivesTopics() {
+  // return les topics actifs de l'user connecté
+  public function myActivesTopics() {
 
-      // je peux utiliser Session ici?
-      $user = Session::getUser();
-      $id = $user->getId();
-  
-      $sql= "
-      SELECT title, id_topic, intro, post.user_id, category_id
-      FROM $this->tableName
-      INNER JOIN post ON post.topic_id = topic.id_topic 
-      WHERE post.user_id = :id
-      GROUP BY id_topic
-      ";
-      return $this->getMultipleResults(
-        DAO::select($sql, ['id' => $id]), 
-        $this->className);
-    }
-  
-     // return les topics de l'user connecté
-     public function myTopics() {
-  
-      // je peux utiliser Session ici?
-      $user = Session::getUser();
-      $id = $user->getId();
-  
-      $sql= "
-      SELECT *
-      FROM $this->tableName
-      WHERE user_id = :id
-      ";
-      return $this->getMultipleResults(
-        DAO::select($sql, ['id' => $id]), 
-        $this->className);
-    }
+    // je peux utiliser Session ici?
+    $user = Session::getUser();
+    $id = $user->getId();
+
+    $sql= "
+    SELECT title, id_topic, intro, post.user_id, category_id
+    FROM $this->tableName
+    INNER JOIN post ON post.topic_id = topic.id_topic 
+    WHERE post.user_id = :id
+    GROUP BY id_topic
+    ";
+    return $this->getMultipleResults(
+      DAO::select($sql, ['id' => $id]), 
+      $this->className);
+  }
+
+    // return les topics de l'user connecté
+    public function myTopics() {
+
+    // je peux utiliser Session ici?
+    $user = Session::getUser();
+    $id = $user->getId();
+
+    $sql= "
+    SELECT *
+    FROM $this->tableName
+    WHERE user_id = :id
+    ";
+    return $this->getMultipleResults(
+      DAO::select($sql, ['id' => $id]), 
+      $this->className);
+  }
+
+  public function closeTopic($idTopic){
+    $sql= "
+    UPDATE $this->tableName
+    SET closed = 1
+    WHERE id_topic = :id
+    ";
+    return DAO::update($sql, ['id' => $idTopic]); 
+  }
 }
