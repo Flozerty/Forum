@@ -167,7 +167,9 @@ if(isset($result["data"]['myTopics'])) {
               }?>
             </div>
             <div id="activesWeek">
-              <p class="activesTitle"><b>Cette semaine :</b></p>
+              <p class="activesTitle">
+                <b>Cette semaine :</b>
+              </p>
 
               <?php foreach($activesWeek as $active) {
                 echo "<p>".$active->getPseudo()." :<span>".$active->getNbPosts()."</span></p>";
@@ -187,15 +189,15 @@ if(isset($result["data"]['myTopics'])) {
         <!-------------------------------------------->
 
         <!-- sauf quand login / register -->
-        <?php if($activePage != "login" && $activePage != "register") { ?>
+        <?php 
+        if($activePage != "login" && $activePage != "register" && Session::getUser()) { 
+          ?>
 
         <aside id="layout-aside">
           <i id="toggle-right" class="toggleButton fa-solid fa-circle-arrow-left"></i>
 
           <!-- Les topics de l'user -->
-          <?php 
-          if(isset($myTopics)) { 
-            ?>
+          <?php if(isset($myTopics)) { ?>
 
           <div id="myTopics">
             <p>Mes sujets :</p>
