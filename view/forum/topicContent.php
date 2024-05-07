@@ -38,7 +38,10 @@ use App\Session;
     <?php } else { ?>
 
     <div class="postInfos">
-      <p><?= $post->getUser() ?></p>
+      <p>
+        <img src="public/img/avatar/<?= $post->getUser()->getAvatar() ?>" alt="avatar de <?= $post->getUser() ?>">
+        <?= $post->getUser() ?>
+      </p>
       <p>il y a
         <!-- On utilise la fonction de timerDelay créée dans Entity.php -->
         <?php 
