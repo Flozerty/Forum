@@ -161,13 +161,135 @@ class SecurityController extends AbstractController{
     }
   }
   
-        //////////////////////////////////////////////
         /////////////////// LOGOUT ///////////////////
-        //////////////////////////////////////////////
   public function logout () {
     Session::addFlash("error","au revoir ".Session::getUser());
-    $_SESSION["user"] = null;
+    Session::setUser(null);
     AbstractController::redirectTo($ctrl = "home", $action = "index", $id = null);
   }
   
+        //////////////// CHANGE EMAIL ////////////////
+  public function changeEmail(){
+    $newEmail = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
+    $userManager = new UserManager();
+
+    // on vérifie l'entrée de l'email
+    if(!$newEmail) {
+      Session::addFlash("error","veuillez saisir un email valide");
+      AbstractController::redirectTo($ctrl = "forum", $action = "myInfos");
+    }
+
+    $verifyEmail = $userManager->findUserByEmail($newEmail);
+
+    // on vérifié si l'email existe déja
+    if($verifyEmail) {
+      Session::addFlash("error","cet email a déjà été attribué");
+      AbstractController::redirectTo($ctrl = "forum", $action = "myInfos");
+    }
+// on change l'email et on réattribue les données de l'user dans SESSION
+    $userManager->changeEmail($newEmail);
+
+    Session::addFlash("success","votre email a été modifié");
+
+    $userUpdated = $userManager->findOneById(Session::getUser()->getId());
+    Session::setUser($userUpdated);
+
+    AbstractController::redirectTo($ctrl = "forum", $action = "myInfos");
+  }
+
+        ////////////// CHANGE PASSWORD //////////////
+  public function changePassword() {
+    $actualPass = filter_input(INPUT_POST, "actualPass", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $newPass1 = filter_input(INPUT_POST, "newPass1", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $newPass2 = filter_input(INPUT_POST, "newPass2", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    
+    $userManager = new UserManager();
+
+    // on récupère l'user de la base de donnée. 
+    // (on fait pas confiance à l'user de Session)
+    $user = $userManager->findOneById(Session::getUser()->getId());
+    $hach = $user->getPassword();
+
+    if(!password_verify($actualPass, $hach)){
+      Session::addFlash("error"," vérifiez votre mot de passe");
+      AbstractController::redirectTo($ctrl = "forum", $action = "myInfos");
+    }
+
+    if($actualPass == $newPass1) {
+      Session::addFlash("error","Choisissez un mot de passe différent");
+      AbstractController::redirectTo($ctrl = "forum", $action = "myInfos");
+    }
+
+    if($newPass1 != $newPass2) {
+      Session::addFlash("error"," les deux mots de passe ne sont pas identiques");
+      AbstractController::redirectTo($ctrl = "forum", $action = "myInfos");
+    }
+
+    $newPassword = password_hash($newPass1, PASSWORD_DEFAULT);
+    $userManager->changePassword($newPassword);
+    Session::addFlash("success"," votre mot de passe a été mis à jour");
+    
+    $userUpdated = $userManager->findOneById(Session::getUser()->getId());
+    Session::setUser($userUpdated);
+
+    AbstractController::redirectTo($ctrl = "forum", $action = "myInfos");
+  }
+
+  //////////////// CHANGE AVATAR ////////////////
+  public function changeAvatar(){
+
+    $target_dir = PUBLIC_DIR."img/avatar/";
+    $target_file = $target_dir.basename($_FILES["avatar"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    
+    if(isset($_POST["submit"])) {
+      $check = getimagesize($_FILES["avatar"]["tmp_name"]);
+      if($check !== false) {
+        echo"File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+      } else {
+        echo "File is not an image.";
+        $uploadOk = 0;
+      }
+    }
+
+    // si le fichier existe déja
+    if (file_exists($target_file)) {
+        Session::addFlash("error","Le fichier existe déjà, veuillez le renommer.");
+      $uploadOk = 0;
+    }
+    
+    // restriction de taille
+    if ($_FILES["avatar"]["size"] > 500000) {
+        Session::addFlash("error","Fichier trop volumineux.");
+      $uploadOk = 0;
+    }
+
+    // restriction de format
+    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+    && $imageFileType != "gif" ) {
+        Session::addFlash("error","Seulement JPG, JPEG, PNG & GIF autorisés.");
+      $uploadOk = 0;
+    }
+
+    if ($uploadOk == 0) {
+    // si tout est ok, on upload le fichier
+    } else {
+      if (move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file)) {
+        Session::addFlash("success","Vous avez un nouvel avatar!");
+      } else {
+        Session::addFlash("error","Désolé une erreur est survenue.");
+      }
+    }
+
+    $userManager = new UserManager();
+    // on change l'avatar de la BDD et on met a jour l'user de SESSION 
+    $userManager->changeAvatar($_FILES["avatar"]["name"]);
+
+    $userUpdated = $userManager->findOneById(Session::getUser()->getId());
+    Session::setUser($userUpdated);
+
+    AbstractController::redirectTo($ctrl = "forum", $action = "myInfos");
+  }
 }

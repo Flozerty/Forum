@@ -22,7 +22,7 @@ class UserManager extends Manager{
     WHERE email = :email
     ";
     return $this->getOneOrNullResult(
-      DAO::select($sql, ['email' => $email]), 
+      DAO::select($sql, ["email" => $email]), 
       $this->className
     );
   }
@@ -70,6 +70,48 @@ class UserManager extends Manager{
     ";
     return $this->getMultipleResults(
       DAO::select($sql), 
+      $this->className);
+  }
+
+  public function changeEmail($email) {
+
+    $id = Session::getUser()->getId();
+
+    $sql= "
+    UPDATE user
+    SET email = :email
+    WHERE id_user = :id
+    ";
+    return $this->getMultipleResults(
+      DAO::select($sql, ["id" => $id, "email" => $email]), 
+      $this->className);
+  }
+
+  public function changePassword($password) {
+
+    $id = Session::getUser()->getId();
+
+    $sql= "
+    UPDATE user
+    SET password = :password
+    WHERE id_user = :id
+    ";
+    return $this->getMultipleResults(
+      DAO::select($sql, ["id" => $id, "password" => $password]), 
+      $this->className);
+  }
+
+  public function changeAvatar($avatar) {
+
+    $id = Session::getUser()->getId();
+
+    $sql= "
+    UPDATE user
+    SET avatar = :avatar
+    WHERE id_user = :id
+    ";
+    return $this->getMultipleResults(
+      DAO::select($sql, ["id" => $id, "avatar" => $avatar]), 
       $this->className);
   }
 }

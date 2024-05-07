@@ -36,28 +36,30 @@ use App\Session;
     <legend><b>changer de mot de passe :</b></legend>
     <p>
       <label for="actualPass">Mot de passe actuel :</label>
-      <input type="password" name="actualPass" id="actualPass">
+      <input type="password" name="actualPass" id="actualPass" required>
     </p>
 
     <p>
       <label for="newPass1">Nouveau mot de passe :</label>
-      <input type="password" name="newPass1" id="newPass1">
+      <input type="password" name="newPass1" id="newPass1" required>
     </p>
 
     <p>
       <label for="newPass2">Confirmez le mot de passe :</label>
-      <input type="password" name="newPass2" id="newPass2">
+      <input type="password" name="newPass2" id="newPass2" required>
     </p>
+    <input class="submit" type="submit" value="changer le mot de passe">
   </form>
 
-  <form id="avatarForm" action="" method="post">
-    <legend><b>changer d'avatar :</b></legend>
+  <form id="avatarForm" action="index.php?ctrl=security&action=changeAvatar" method="post"
+    enctype="multipart/form-data">
+    <label for="avatar"><b>changer d'avatar :</b></label>
 
     <p>
-      <button>Choisissez un fichier</button>
+      <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" required>
       <input type="submit" value="valider">
     </p>
   </form>
 
-  <a href="">Supprimer mon compte</a>
+  <a href="#">Supprimer mon compte</a>
 </div>
