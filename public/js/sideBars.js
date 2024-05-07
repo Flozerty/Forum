@@ -17,6 +17,12 @@ leftButton.addEventListener('click', () => {
     leftButton.classList.remove('rotate180')
   }
   leftBool = !leftBool
+
+  if (!rightBool) {
+    sideRight.style.right = "-250px";
+    rightButton.classList.remove('rotate180')
+    rightBool = !rightBool
+  }
 })
 
 rightButton.addEventListener('click', () => {
@@ -28,4 +34,10 @@ rightButton.addEventListener('click', () => {
     rightButton.classList.remove('rotate180')
   }
   rightBool = !rightBool
+
+  if (!leftBool) {
+    sideLeft.style.left = "-250px";
+    leftButton.classList.remove('rotate180')
+    leftBool = !leftBool
+  }
 })
