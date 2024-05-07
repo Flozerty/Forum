@@ -144,7 +144,7 @@ header {
   #logo-container {
     img {
       height: 4vh;
-      padding-right: 10px;
+      padding-right: 5px;
     }
 
     figure {
@@ -226,10 +226,11 @@ header {
     flex-direction: column;
     position: absolute;
     background-color: var(--white);
-    top: -500%;
+    top: -300px;
     right: 0;
     padding: 10px;
     width: 150%;
+    min-width: 150px;
     text-align: center;
     z-index: 4;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 8px 24px;
@@ -535,7 +536,7 @@ footer {
           height: 70px;
           border-radius: 50%;
           filter: drop-shadow(var(--shadow-img));
-          margin-right: 15px;
+          margin: 0 15px;
         }
       }
     }
@@ -554,6 +555,14 @@ footer {
 
     i {
       right: -50px;
+    }
+
+    .postInfos {
+      flex-direction: row-reverse;
+
+      p {
+        flex-direction: row-reverse;
+      }
     }
   }
 
@@ -719,5 +728,12 @@ footer {
     .topic-post {
       width: 90%;
     }
+  }
+}
+
+@media screen and (max-width: 600px) {
+
+  #userFigureContainer figcaption {
+    display: none;
   }
 }
