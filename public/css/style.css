@@ -5,6 +5,8 @@
   --white: #F2F2F2;
   --transitionTime: 0.3s;
   --transformScaleTopic: scale(1.04);
+  --shadow-img: 0 0 .5rem rgb(92, 157, 195);
+
 }
 
 * {
@@ -189,12 +191,11 @@ header {
       display: flex;
       flex-direction: row-reverse;
       align-items: center;
-      height: 6vh;
+      height: 5vh;
 
       img {
         height: 100%;
         border-radius: 50%;
-        overflow: hidden;
       }
 
       figcaption {
@@ -510,10 +511,9 @@ footer {
         height: 100%;
 
         img {
-          height: 100%;
+          height: 70px;
           border-radius: 50%;
-          box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-          filter: drop-shadow(0 0 20px var(--bluemid));
+          filter: drop-shadow(var(--shadow-img));
           margin-right: 15px;
         }
       }
@@ -634,9 +634,10 @@ footer {
   span {
     align-self: flex-end;
     cursor: pointer;
+    text-decoration: underline;
 
     &:hover {
-      text-decoration: underline;
+      text-decoration: none;
     }
   }
 
@@ -659,4 +660,15 @@ footer {
     align-self: center;
   }
 
+  #deleteMyAccount {
+    padding: 5px;
+    width: 100%;
+    border: 1px solid;
+    border-radius: 10px;
+    color: red;
+    text-align: center;
+    font-weight: 700;
+
+
+  }
 }

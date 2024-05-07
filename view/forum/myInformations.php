@@ -61,5 +61,7 @@ use App\Session;
     </p>
   </form>
 
-  <a href="#">Supprimer mon compte</a>
+  <a id="deleteMyAccount" href="#">
+    Supprimer mon compte
+  </a>
 </div>
