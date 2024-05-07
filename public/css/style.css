@@ -221,7 +221,7 @@ header {
     text-align: center;
     z-index: 4;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 8px 24px;
-    /* transition: 0.3s; */
+    transition: 0.3s;
 
     li {
       padding: 7px 0;

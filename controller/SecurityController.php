@@ -239,9 +239,13 @@ class SecurityController extends AbstractController{
   public function changeAvatar(){
 
     $target_dir = PUBLIC_DIR."img/avatar/";
-    $target_file = $target_dir.basename($_FILES["avatar"]["name"]);
+    // le nom du fichier est $_FILES["avatar"]["name"]
+    // on veut rename le fichier pour qu'il soit unique :
+    // on utilise uniqid()
+    $original_fileName = $target_dir.basename($_FILES["avatar"]["name"]);
     $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    $imageFileType = strtolower(pathinfo($original_fileName,PATHINFO_EXTENSION));
+    $target_file = basename(uniqid().'.'.$imageFileType);
     
     if(isset($_POST["submit"])) {
       $check = getimagesize($_FILES["avatar"]["tmp_name"]);
@@ -255,7 +259,7 @@ class SecurityController extends AbstractController{
     }
 
     // si le fichier existe déja
-    if (file_exists($target_file)) {
+    if (file_exists($target_dir.$target_file)) {
         Session::addFlash("error","Le fichier existe déjà, veuillez le renommer.");
       $uploadOk = 0;
     }
@@ -276,7 +280,7 @@ class SecurityController extends AbstractController{
     if ($uploadOk == 0) {
     // si tout est ok, on upload le fichier
     } else {
-      if (move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file)) {
+      if (move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_dir.$target_file)) {
         Session::addFlash("success","Vous avez un nouvel avatar!");
       } else {
         Session::addFlash("error","Désolé une erreur est survenue.");
@@ -285,7 +289,7 @@ class SecurityController extends AbstractController{
 
     $userManager = new UserManager();
     // on change l'avatar de la BDD et on met a jour l'user de SESSION 
-    $userManager->changeAvatar($_FILES["avatar"]["name"]);
+    $userManager->changeAvatar($target_file);
 
     $userUpdated = $userManager->findOneById(Session::getUser()->getId());
     Session::setUser($userUpdated);
