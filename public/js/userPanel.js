@@ -10,7 +10,7 @@ show = false;
 userContainer.addEventListener('click', () => {
   if (show) {
     caret.classList.remove("rotate180");
-    headerNavList.style.top = "-400%";
+    headerNavList.style.top = "-500%";
   } else {
     caret.classList.add("rotate180");
     headerNavList.style.top = "150%";
@@ -21,7 +21,7 @@ userContainer.addEventListener('click', () => {
 main.addEventListener("click", () => {
   if (show) {
     caret.classList.remove("rotate180");
-    headerNavList.style.top = "-400%";
+    headerNavList.style.top = "-500%";
     show = !show;
   }
 })
