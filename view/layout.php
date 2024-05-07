@@ -82,7 +82,7 @@ if(isset($result["data"]['myTopics'])) {
             <!-- profil -->
             <div id=userContainer>
               <figure id="userFigureContainer">
-                <img src="<?= PUBLIC_DIR."img/".App\Session::getUser()->getAvatar() ?>"
+                <img src="<?= PUBLIC_DIR."img/avatar/".App\Session::getUser()->getAvatar() ?>"
                   alt="avatar de <?= App\Session::getUser()?>">
                 <figcaption><?= App\Session::getUser()?></figcaption>
               </figure>

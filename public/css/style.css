@@ -13,7 +13,6 @@
   box-sizing: border-box;
   font-family: "Cabin", sans-serif;
   color: var(--darkblue);
-
 }
 
 a {
@@ -170,8 +169,6 @@ header {
   a {
     color: white;
   }
-
-
 
   #nav-right {
     display: flex;

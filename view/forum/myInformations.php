@@ -15,7 +15,10 @@ use App\Session;
 
     <p>
       <b>date d'inscription : </b>
-      <?= Session::getUser()->getInscriptionDate() ?>
+      <?php 
+      $date = new DateTimeImmutable(Session::getUser()->getInscriptionDate());
+      echo $date->format('d/m/Y à H:i')
+      ?>
     </p>
   </section>
 
@@ -29,7 +32,7 @@ use App\Session;
     <span><b>changer</b></span>
   </form>
 
-  <form id="passwordInfos" action="" method="post">
+  <form id="passwordInfos" action="index.php?ctrl=security&action=changePassword" method="post">
     <legend><b>changer de mot de passe :</b></legend>
     <p>
       <label for="actualPass">Mot de passe actuel :</label>
