@@ -127,6 +127,7 @@ if(isset($result["data"]['myTopics'])) {
         <?php if($activePage != "login" && $activePage != "register") { ?>
 
         <div id="sideNav-left">
+          <i id="toggle-left" class="toggleButton fa-solid fa-circle-arrow-right"></i>
           <nav>
             <p class="link">
               <a href="index.php">Accueil</a>
@@ -189,6 +190,7 @@ if(isset($result["data"]['myTopics'])) {
         <?php if($activePage != "login" && $activePage != "register") { ?>
 
         <aside id="layout-aside">
+          <i id="toggle-right" class="toggleButton fa-solid fa-circle-arrow-left"></i>
 
           <!-- Les topics de l'user -->
           <?php 
@@ -328,6 +330,7 @@ if(isset($result["data"]['myTopics'])) {
   <script src="<?= PUBLIC_DIR ?>/js/userPanel.js"></script>
   <script src="<?= PUBLIC_DIR ?>/js/notif.js"></script>
   <script src="<?= PUBLIC_DIR ?>/js/myInfos.js"></script>
+  <script src="<?= PUBLIC_DIR ?>/js/sideBars.js"></script>
 </body>
 
 </html>

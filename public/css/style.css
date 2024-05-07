@@ -94,6 +94,17 @@ hr {
   }
 }
 
+.toggleButton {
+  font-size: 50px;
+  position: absolute;
+  top: 200px;
+  display: none;
+  cursor: pointer;
+  transition: var(--transitionTime);
+  background-color: var(--bluemid);
+  border-radius: 50%;
+}
+
 .message {
   position: fixed;
   text-align: center;
@@ -199,7 +210,7 @@ header {
       }
 
       figcaption {
-        margin-right: 15px;
+        margin-right: 5px;
       }
     }
   }
@@ -262,9 +273,14 @@ main {
   padding: 75px 0 150px 0;
   width: 250px;
   background-color: var(--bluemid);
+  transition: var(--transitionTime);
 
   nav {
     width: 80%;
+  }
+
+  #toggle-left {
+    right: -25px;
   }
 }
 
@@ -350,9 +366,14 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 75px 0 150px 0;
+  padding: 75px 15px 150px 15px;
   width: 250px;
   background-color: var(--lightblue);
+  transition: var(--transitionTime);
+
+  #toggle-right {
+    left: -25px;
+  }
 }
 
 /*////////////////////////////////////*/
@@ -668,7 +689,35 @@ footer {
     color: red;
     text-align: center;
     font-weight: 700;
+  }
+}
 
+/* //////////////////////////////// */
+/* ///////// MEDIA QUERIES //////// */
+/* //////////////////////////////// */
 
+@media screen and (max-width: 1300px) {
+  #sideNav-left {
+    left: -250px;
+  }
+
+  #main-wrapper {
+    width: 100%;
+  }
+
+  .toggleButton {
+    display: block;
+  }
+
+  #layout-aside {
+    right: -250px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #posts-container {
+    .topic-post {
+      width: 90%;
+    }
   }
 }
