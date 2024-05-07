@@ -51,7 +51,7 @@ class UserManager extends Manager{
     LIMIT 5
     ";
     return $this->getMultipleResults(
-      DAO::select($sql), 
+      DAO::select($sql),
       $this->className);
   }
   // DATE_SUB(CURDATE(), INTERVAL 7 DAY) : 
@@ -83,7 +83,7 @@ class UserManager extends Manager{
     WHERE id_user = :id
     ";
     return $this->getMultipleResults(
-      DAO::select($sql, ["id" => $id, "email" => $email]), 
+      DAO::select($sql, ["id" => $id, "email" => $email]),
       $this->className);
   }
 
