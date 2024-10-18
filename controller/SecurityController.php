@@ -250,8 +250,7 @@ class SecurityController extends AbstractController
 
     $target_dir = PUBLIC_DIR . "img/avatar/";
     // le nom du fichier est $_FILES["avatar"]["name"]
-    // on veut rename le fichier pour qu'il soit unique :
-    // on utilise uniqid()
+    // on veut rename le fichier pour qu'il soit unique : on utilise uniqid()
     $original_fileName = $target_dir . basename($_FILES["avatar"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($original_fileName, PATHINFO_EXTENSION));
